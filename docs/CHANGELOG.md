@@ -42,6 +42,16 @@
   - Demo, 400 on bad params, and SPA deep links all work.
 - Independent QA review: see the QA section below.
 
+### Release
+- Re-verified after the QA fixes: lint ✓, typecheck ✓, 178/178 unit and integration tests ✓, build ✓, 14/14 Playwright e2e ✓.
+- Pushed to https://github.com/egrandmaison89/tdfg-dashboard (public).
+- Deployed to Netlify production (CLI deploy, team `egrandmaison89`): https://tdfg-dashboard.netlify.app
+- Production smoke test:
+  - `?week=01` → 400 (confirms the post-QA function is live).
+  - `/api/slate` → 8 games, 32/32 legs, served as `cache-status: "Netlify Durable"; hit`.
+  - Week 2 → the 8 Sep 20 games at 1 PM (pre).
+  - Demo and SPA deep links work. No console errors. Logos load.
+
 ### QA round 1 (independent reviewer): findings and resolutions
 All automated gates passed at review time, but the reviewer found real defects by reproducing Sunday scenarios.
 
