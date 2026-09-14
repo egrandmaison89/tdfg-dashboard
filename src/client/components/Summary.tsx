@@ -5,6 +5,7 @@ import { TeamLogo } from './GameCard';
 
 const STATUS_LABEL: Record<BetStatus, string> = {
   NO_GAMES: 'No games',
+  NO_BET: 'No bet · game postponed',
   NOT_STARTED: 'Not started',
   ALIVE: 'Alive',
   WON: 'Won 🎉',

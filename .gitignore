@@ -9,3 +9,4 @@ fixtures/live-mnf/raw/
 *.log
 .claude/
 deno.lock
+.cache/

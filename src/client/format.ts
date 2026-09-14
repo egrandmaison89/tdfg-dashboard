@@ -35,6 +35,13 @@ export function weekLabel(seasonType: number, week: number): string {
 
 export const LEG_NAME: Record<LegType, string> = { TD: 'touchdown', FG: 'field goal' };
 
+export function formatPct(ratio: number | null, digits = 1): string {
+  if (ratio === null) return '–';
+  return `${(ratio * 100).toFixed(digits)}%`;
+}
+
+export const plural = (n: number, word: string) => `${n} ${word}${n === 1 ? '' : 's'}`;
+
 export const RISK_LABEL: Record<RiskLevel, string> = {
   void: 'Void',
   done: 'Off the board',

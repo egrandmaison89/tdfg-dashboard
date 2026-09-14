@@ -1,0 +1,536 @@
+{
+  "season": 2021,
+  "complete": true,
+  "weeks": [
+    {
+      "season": 2021,
+      "week": 1,
+      "slateDate": "2021-09-12",
+      "status": "lost",
+      "games": 9,
+      "voidGames": 0,
+      "totalLegs": 36,
+      "hitLegs": 31,
+      "missedLegs": [
+        {
+          "abbr": "NYJ",
+          "type": "FG"
+        },
+        {
+          "abbr": "JAX",
+          "type": "FG"
+        },
+        {
+          "abbr": "TEN",
+          "type": "FG"
+        },
+        {
+          "abbr": "ATL",
+          "type": "TD"
+        },
+        {
+          "abbr": "SEA",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2021,
+      "week": 2,
+      "slateDate": "2021-09-19",
+      "status": "lost",
+      "games": 9,
+      "voidGames": 0,
+      "totalLegs": 36,
+      "hitLegs": 29,
+      "missedLegs": [
+        {
+          "abbr": "NO",
+          "type": "FG"
+        },
+        {
+          "abbr": "HOU",
+          "type": "FG"
+        },
+        {
+          "abbr": "JAX",
+          "type": "FG"
+        },
+        {
+          "abbr": "BUF",
+          "type": "FG"
+        },
+        {
+          "abbr": "MIA",
+          "type": "TD"
+        },
+        {
+          "abbr": "MIA",
+          "type": "FG"
+        },
+        {
+          "abbr": "NYJ",
+          "type": "TD"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2021,
+      "week": 3,
+      "slateDate": "2021-09-26",
+      "status": "lost",
+      "games": 9,
+      "voidGames": 0,
+      "totalLegs": 36,
+      "hitLegs": 32,
+      "missedLegs": [
+        {
+          "abbr": "WSH",
+          "type": "FG"
+        },
+        {
+          "abbr": "CHI",
+          "type": "TD"
+        },
+        {
+          "abbr": "JAX",
+          "type": "FG"
+        },
+        {
+          "abbr": "NO",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2021,
+      "week": 4,
+      "slateDate": "2021-10-03",
+      "status": "lost",
+      "games": 9,
+      "voidGames": 0,
+      "totalLegs": 36,
+      "hitLegs": 29,
+      "missedLegs": [
+        {
+          "abbr": "HOU",
+          "type": "TD"
+        },
+        {
+          "abbr": "HOU",
+          "type": "FG"
+        },
+        {
+          "abbr": "DET",
+          "type": "FG"
+        },
+        {
+          "abbr": "CAR",
+          "type": "FG"
+        },
+        {
+          "abbr": "MIN",
+          "type": "FG"
+        },
+        {
+          "abbr": "NO",
+          "type": "FG"
+        },
+        {
+          "abbr": "KC",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2021,
+      "week": 5,
+      "slateDate": "2021-10-10",
+      "status": "lost",
+      "games": 8,
+      "voidGames": 0,
+      "totalLegs": 32,
+      "hitLegs": 29,
+      "missedLegs": [
+        {
+          "abbr": "CIN",
+          "type": "FG"
+        },
+        {
+          "abbr": "JAX",
+          "type": "FG"
+        },
+        {
+          "abbr": "NO",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2021,
+      "week": 6,
+      "slateDate": "2021-10-17",
+      "status": "lost",
+      "games": 7,
+      "voidGames": 0,
+      "totalLegs": 28,
+      "hitLegs": 25,
+      "missedLegs": [
+        {
+          "abbr": "LAC",
+          "type": "FG"
+        },
+        {
+          "abbr": "CHI",
+          "type": "FG"
+        },
+        {
+          "abbr": "HOU",
+          "type": "TD"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2021,
+      "week": 7,
+      "slateDate": "2021-10-24",
+      "status": "lost",
+      "games": 6,
+      "voidGames": 0,
+      "totalLegs": 24,
+      "hitLegs": 20,
+      "missedLegs": [
+        {
+          "abbr": "MIA",
+          "type": "FG"
+        },
+        {
+          "abbr": "NYJ",
+          "type": "FG"
+        },
+        {
+          "abbr": "CAR",
+          "type": "TD"
+        },
+        {
+          "abbr": "KC",
+          "type": "TD"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2021,
+      "week": 8,
+      "slateDate": "2021-10-31",
+      "status": "lost",
+      "games": 8,
+      "voidGames": 0,
+      "totalLegs": 32,
+      "hitLegs": 30,
+      "missedLegs": [
+        {
+          "abbr": "DET",
+          "type": "FG"
+        },
+        {
+          "abbr": "HOU",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2021,
+      "week": 9,
+      "slateDate": "2021-11-07",
+      "status": "lost",
+      "games": 8,
+      "voidGames": 0,
+      "totalLegs": 32,
+      "hitLegs": 27,
+      "missedLegs": [
+        {
+          "abbr": "CAR",
+          "type": "TD"
+        },
+        {
+          "abbr": "DAL",
+          "type": "FG"
+        },
+        {
+          "abbr": "BUF",
+          "type": "TD"
+        },
+        {
+          "abbr": "JAX",
+          "type": "TD"
+        },
+        {
+          "abbr": "HOU",
+          "type": "TD"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2021,
+      "week": 10,
+      "slateDate": "2021-11-14",
+      "status": "lost",
+      "games": 7,
+      "voidGames": 0,
+      "totalLegs": 28,
+      "hitLegs": 25,
+      "missedLegs": [
+        {
+          "abbr": "ATL",
+          "type": "TD"
+        },
+        {
+          "abbr": "DAL",
+          "type": "FG"
+        },
+        {
+          "abbr": "CLE",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2021,
+      "week": 11,
+      "slateDate": "2021-11-21",
+      "status": "lost",
+      "games": 9,
+      "voidGames": 0,
+      "totalLegs": 36,
+      "hitLegs": 31,
+      "missedLegs": [
+        {
+          "abbr": "BUF",
+          "type": "FG"
+        },
+        {
+          "abbr": "CAR",
+          "type": "FG"
+        },
+        {
+          "abbr": "CHI",
+          "type": "FG"
+        },
+        {
+          "abbr": "CLE",
+          "type": "FG"
+        },
+        {
+          "abbr": "TEN",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2021,
+      "week": 12,
+      "slateDate": "2021-11-28",
+      "status": "lost",
+      "games": 7,
+      "voidGames": 0,
+      "totalLegs": 28,
+      "hitLegs": 24,
+      "missedLegs": [
+        {
+          "abbr": "HOU",
+          "type": "FG"
+        },
+        {
+          "abbr": "ATL",
+          "type": "FG"
+        },
+        {
+          "abbr": "TEN",
+          "type": "FG"
+        },
+        {
+          "abbr": "PHI",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2021,
+      "week": 13,
+      "slateDate": "2021-12-05",
+      "status": "lost",
+      "games": 7,
+      "voidGames": 0,
+      "totalLegs": 28,
+      "hitLegs": 23,
+      "missedLegs": [
+        {
+          "abbr": "CHI",
+          "type": "FG"
+        },
+        {
+          "abbr": "HOU",
+          "type": "TD"
+        },
+        {
+          "abbr": "HOU",
+          "type": "FG"
+        },
+        {
+          "abbr": "NYG",
+          "type": "TD"
+        },
+        {
+          "abbr": "NYJ",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2021,
+      "week": 14,
+      "slateDate": "2021-12-12",
+      "status": "lost",
+      "games": 7,
+      "voidGames": 0,
+      "totalLegs": 28,
+      "hitLegs": 23,
+      "missedLegs": [
+        {
+          "abbr": "CAR",
+          "type": "FG"
+        },
+        {
+          "abbr": "NYJ",
+          "type": "TD"
+        },
+        {
+          "abbr": "JAX",
+          "type": "TD"
+        },
+        {
+          "abbr": "JAX",
+          "type": "FG"
+        },
+        {
+          "abbr": "WSH",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2021,
+      "week": 15,
+      "slateDate": "2021-12-19",
+      "status": "lost",
+      "games": 6,
+      "voidGames": 0,
+      "totalLegs": 24,
+      "hitLegs": 22,
+      "missedLegs": [
+        {
+          "abbr": "CAR",
+          "type": "FG"
+        },
+        {
+          "abbr": "NYG",
+          "type": "TD"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2021,
+      "week": 16,
+      "slateDate": "2021-12-26",
+      "status": "lost",
+      "games": 8,
+      "voidGames": 0,
+      "totalLegs": 32,
+      "hitLegs": 29,
+      "missedLegs": [
+        {
+          "abbr": "CAR",
+          "type": "TD"
+        },
+        {
+          "abbr": "BAL",
+          "type": "FG"
+        },
+        {
+          "abbr": "NE",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2021,
+      "week": 17,
+      "slateDate": "2022-01-02",
+      "status": "lost",
+      "games": 9,
+      "voidGames": 0,
+      "totalLegs": 36,
+      "hitLegs": 32,
+      "missedLegs": [
+        {
+          "abbr": "BUF",
+          "type": "FG"
+        },
+        {
+          "abbr": "NYG",
+          "type": "TD"
+        },
+        {
+          "abbr": "MIA",
+          "type": "TD"
+        },
+        {
+          "abbr": "LAR",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2021,
+      "week": 18,
+      "slateDate": "2022-01-09",
+      "status": "lost",
+      "games": 7,
+      "voidGames": 0,
+      "totalLegs": 28,
+      "hitLegs": 25,
+      "missedLegs": [
+        {
+          "abbr": "CLE",
+          "type": "FG"
+        },
+        {
+          "abbr": "TEN",
+          "type": "FG"
+        },
+        {
+          "abbr": "NYG",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    }
+  ]
+}

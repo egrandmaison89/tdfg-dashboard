@@ -37,6 +37,14 @@ describe('cdnTtlSeconds (ARCHITECTURE §3)', () => {
     expect(cdnTtlSeconds(s, NOW)).toBe(expected);
   });
 
+  it('caches a long-settled week for a day only when that week was requested explicitly', () => {
+    const settled = slate([game({ state: 'post', kickoff: minutesFromNow(-3 * 24 * 60) })]);
+    expect(cdnTtlSeconds(settled, NOW, { pinnedWeek: true })).toBe(TTL.archived);
+    expect(cdnTtlSeconds(settled, NOW)).toBe(TTL.allFinal);
+    const recent = slate([game({ state: 'post', kickoff: minutesFromNow(-12 * 60) })]);
+    expect(cdnTtlSeconds(recent, NOW, { pinnedWeek: true })).toBe(TTL.allFinal);
+  });
+
   it('builds durable CDN headers that vary only on meaningful params, with short SWR when live (QA F9)', () => {
     expect(cacheHeaders(20)).toEqual({
       'Cache-Control': 'public, max-age=0, must-revalidate',

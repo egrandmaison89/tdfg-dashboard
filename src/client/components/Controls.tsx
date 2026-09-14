@@ -1,8 +1,5 @@
 import { useEffect, useState } from 'react';
 import { FILTERS, type FilterKey, type SortMode } from '../../shared/bet';
-import type { SlateResponse } from '../../shared/types';
-import { weekLabel } from '../format';
-import { adjacentWeek, type WeekRef } from '../query';
 
 export function Controls(props: {
   filter: FilterKey;
@@ -38,28 +35,6 @@ export function Controls(props: {
         ))}
       </div>
     </div>
-  );
-}
-
-export function WeekNav(props: { data: SlateResponse; pinned: boolean; onWeek: (ref: WeekRef) => void; onCurrent: () => void }) {
-  const { data } = props;
-  const prev = adjacentWeek(data.seasonType, data.week, -1);
-  const next = adjacentWeek(data.seasonType, data.week, 1);
-  return (
-    <nav className="week-nav" aria-label="Choose week">
-      <button type="button" className="icon-btn" aria-label="Previous week" disabled={!prev} onClick={() => prev && props.onWeek(prev)}>
-        ‹
-      </button>
-      <span className="week-label">{weekLabel(data.seasonType, data.week)}</span>
-      <button type="button" className="icon-btn" aria-label="Next week" disabled={!next} onClick={() => next && props.onWeek(next)}>
-        ›
-      </button>
-      {props.pinned && (
-        <button type="button" className="link-btn" onClick={props.onCurrent}>
-          Current
-        </button>
-      )}
-    </nav>
   );
 }
 

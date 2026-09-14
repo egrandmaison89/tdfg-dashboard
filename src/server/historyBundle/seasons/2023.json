@@ -1,0 +1,540 @@
+{
+  "season": 2023,
+  "complete": true,
+  "weeks": [
+    {
+      "season": 2023,
+      "week": 1,
+      "slateDate": "2023-09-10",
+      "status": "lost",
+      "games": 8,
+      "voidGames": 0,
+      "totalLegs": 32,
+      "hitLegs": 27,
+      "missedLegs": [
+        {
+          "abbr": "HOU",
+          "type": "TD"
+        },
+        {
+          "abbr": "CIN",
+          "type": "TD"
+        },
+        {
+          "abbr": "TEN",
+          "type": "TD"
+        },
+        {
+          "abbr": "IND",
+          "type": "FG"
+        },
+        {
+          "abbr": "PIT",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2023,
+      "week": 2,
+      "slateDate": "2023-09-17",
+      "status": "lost",
+      "games": 8,
+      "voidGames": 0,
+      "totalLegs": 32,
+      "hitLegs": 31,
+      "missedLegs": [
+        {
+          "abbr": "JAX",
+          "type": "TD"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2023,
+      "week": 3,
+      "slateDate": "2023-09-24",
+      "status": "lost",
+      "games": 9,
+      "voidGames": 0,
+      "totalLegs": 36,
+      "hitLegs": 31,
+      "missedLegs": [
+        {
+          "abbr": "TEN",
+          "type": "TD"
+        },
+        {
+          "abbr": "MIA",
+          "type": "FG"
+        },
+        {
+          "abbr": "WSH",
+          "type": "TD"
+        },
+        {
+          "abbr": "ATL",
+          "type": "TD"
+        },
+        {
+          "abbr": "LAC",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2023,
+      "week": 4,
+      "slateDate": "2023-10-01",
+      "status": "lost",
+      "games": 9,
+      "voidGames": 0,
+      "totalLegs": 36,
+      "hitLegs": 27,
+      "missedLegs": [
+        {
+          "abbr": "MIA",
+          "type": "FG"
+        },
+        {
+          "abbr": "CHI",
+          "type": "FG"
+        },
+        {
+          "abbr": "BAL",
+          "type": "FG"
+        },
+        {
+          "abbr": "CLE",
+          "type": "TD"
+        },
+        {
+          "abbr": "PIT",
+          "type": "TD"
+        },
+        {
+          "abbr": "MIN",
+          "type": "FG"
+        },
+        {
+          "abbr": "IND",
+          "type": "FG"
+        },
+        {
+          "abbr": "NO",
+          "type": "TD"
+        },
+        {
+          "abbr": "CIN",
+          "type": "TD"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2023,
+      "week": 5,
+      "slateDate": "2023-10-08",
+      "status": "lost",
+      "games": 6,
+      "voidGames": 0,
+      "totalLegs": 24,
+      "hitLegs": 21,
+      "missedLegs": [
+        {
+          "abbr": "NE",
+          "type": "TD"
+        },
+        {
+          "abbr": "NE",
+          "type": "FG"
+        },
+        {
+          "abbr": "DET",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2023,
+      "week": 6,
+      "slateDate": "2023-10-15",
+      "status": "lost",
+      "games": 7,
+      "voidGames": 0,
+      "totalLegs": 28,
+      "hitLegs": 26,
+      "missedLegs": [
+        {
+          "abbr": "CAR",
+          "type": "FG"
+        },
+        {
+          "abbr": "MIA",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2023,
+      "week": 7,
+      "slateDate": "2023-10-22",
+      "status": "lost",
+      "games": 6,
+      "voidGames": 0,
+      "totalLegs": 24,
+      "hitLegs": 21,
+      "missedLegs": [
+        {
+          "abbr": "WSH",
+          "type": "FG"
+        },
+        {
+          "abbr": "NYG",
+          "type": "FG"
+        },
+        {
+          "abbr": "DET",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2023,
+      "week": 8,
+      "slateDate": "2023-10-29",
+      "status": "lost",
+      "games": 9,
+      "voidGames": 0,
+      "totalLegs": 36,
+      "hitLegs": 34,
+      "missedLegs": [
+        {
+          "abbr": "TEN",
+          "type": "FG"
+        },
+        {
+          "abbr": "HOU",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2023,
+      "week": 9,
+      "slateDate": "2023-11-05",
+      "status": "lost",
+      "games": 7,
+      "voidGames": 0,
+      "totalLegs": 28,
+      "hitLegs": 24,
+      "missedLegs": [
+        {
+          "abbr": "SEA",
+          "type": "TD"
+        },
+        {
+          "abbr": "ARI",
+          "type": "TD"
+        },
+        {
+          "abbr": "ARI",
+          "type": "FG"
+        },
+        {
+          "abbr": "LAR",
+          "type": "TD"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2023,
+      "week": 10,
+      "slateDate": "2023-11-12",
+      "status": "lost",
+      "games": 6,
+      "voidGames": 0,
+      "totalLegs": 24,
+      "hitLegs": 22,
+      "missedLegs": [
+        {
+          "abbr": "TEN",
+          "type": "TD"
+        },
+        {
+          "abbr": "JAX",
+          "type": "TD"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2023,
+      "week": 11,
+      "slateDate": "2023-11-19",
+      "status": "lost",
+      "games": 8,
+      "voidGames": 0,
+      "totalLegs": 32,
+      "hitLegs": 29,
+      "missedLegs": [
+        {
+          "abbr": "HOU",
+          "type": "FG"
+        },
+        {
+          "abbr": "TEN",
+          "type": "FG"
+        },
+        {
+          "abbr": "DET",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2023,
+      "week": 12,
+      "slateDate": "2023-11-26",
+      "status": "lost",
+      "games": 6,
+      "voidGames": 0,
+      "totalLegs": 24,
+      "hitLegs": 21,
+      "missedLegs": [
+        {
+          "abbr": "HOU",
+          "type": "FG"
+        },
+        {
+          "abbr": "NO",
+          "type": "TD"
+        },
+        {
+          "abbr": "NE",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2023,
+      "week": 13,
+      "slateDate": "2023-12-03",
+      "status": "lost",
+      "games": 7,
+      "voidGames": 0,
+      "totalLegs": 28,
+      "hitLegs": 22,
+      "missedLegs": [
+        {
+          "abbr": "LAC",
+          "type": "TD"
+        },
+        {
+          "abbr": "NE",
+          "type": "TD"
+        },
+        {
+          "abbr": "NE",
+          "type": "FG"
+        },
+        {
+          "abbr": "NO",
+          "type": "FG"
+        },
+        {
+          "abbr": "NYJ",
+          "type": "TD"
+        },
+        {
+          "abbr": "WSH",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2023,
+      "week": 14,
+      "slateDate": "2023-12-10",
+      "status": "lost",
+      "games": 7,
+      "voidGames": 0,
+      "totalLegs": 28,
+      "hitLegs": 22,
+      "missedLegs": [
+        {
+          "abbr": "IND",
+          "type": "FG"
+        },
+        {
+          "abbr": "JAX",
+          "type": "FG"
+        },
+        {
+          "abbr": "HOU",
+          "type": "FG"
+        },
+        {
+          "abbr": "DET",
+          "type": "FG"
+        },
+        {
+          "abbr": "CAR",
+          "type": "TD"
+        },
+        {
+          "abbr": "NO",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2023,
+      "week": 15,
+      "slateDate": "2023-12-17",
+      "status": "lost",
+      "games": 7,
+      "voidGames": 0,
+      "totalLegs": 28,
+      "hitLegs": 23,
+      "missedLegs": [
+        {
+          "abbr": "NYJ",
+          "type": "TD"
+        },
+        {
+          "abbr": "NYJ",
+          "type": "FG"
+        },
+        {
+          "abbr": "NYG",
+          "type": "TD"
+        },
+        {
+          "abbr": "ATL",
+          "type": "FG"
+        },
+        {
+          "abbr": "CAR",
+          "type": "TD"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2023,
+      "week": 16,
+      "slateDate": "2023-12-24",
+      "status": "lost",
+      "games": 6,
+      "voidGames": 0,
+      "totalLegs": 24,
+      "hitLegs": 21,
+      "missedLegs": [
+        {
+          "abbr": "CLE",
+          "type": "FG"
+        },
+        {
+          "abbr": "HOU",
+          "type": "FG"
+        },
+        {
+          "abbr": "WSH",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2023,
+      "week": 17,
+      "slateDate": "2023-12-31",
+      "status": "lost",
+      "games": 10,
+      "voidGames": 0,
+      "totalLegs": 40,
+      "hitLegs": 33,
+      "missedLegs": [
+        {
+          "abbr": "BAL",
+          "type": "FG"
+        },
+        {
+          "abbr": "NE",
+          "type": "FG"
+        },
+        {
+          "abbr": "CAR",
+          "type": "TD"
+        },
+        {
+          "abbr": "CAR",
+          "type": "FG"
+        },
+        {
+          "abbr": "TEN",
+          "type": "TD"
+        },
+        {
+          "abbr": "LAR",
+          "type": "FG"
+        },
+        {
+          "abbr": "TB",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2023,
+      "week": 18,
+      "slateDate": "2024-01-07",
+      "status": "lost",
+      "games": 6,
+      "voidGames": 0,
+      "totalLegs": 24,
+      "hitLegs": 18,
+      "missedLegs": [
+        {
+          "abbr": "TB",
+          "type": "TD"
+        },
+        {
+          "abbr": "CAR",
+          "type": "TD"
+        },
+        {
+          "abbr": "CAR",
+          "type": "FG"
+        },
+        {
+          "abbr": "CLE",
+          "type": "FG"
+        },
+        {
+          "abbr": "NE",
+          "type": "TD"
+        },
+        {
+          "abbr": "TEN",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    }
+  ]
+}

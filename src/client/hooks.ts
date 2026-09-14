@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useState } from 'react';
+import type { HistoryResponse } from '../shared/history';
 import { nextPollMs } from '../shared/polling';
 import type { SlateResponse } from '../shared/types';
+import { HISTORY_ERROR_RETRY_MS, historyPollMs, isHistoryResponse } from './nav';
 import { apiUrl, isSlateResponse, type SlateQuery } from './query';
 
 export interface SlateState {
@@ -121,6 +123,80 @@ export function useStoredState<T extends string>(
   );
 
   return [value, update];
+}
+
+export interface HistoryState {
+  data: HistoryResponse | null;
+  error: string | null;
+  loading: boolean;
+  reload: () => void;
+}
+
+/** Fetches /api/history, retrying quickly while the server is still grading weeks (AC13.8). */
+export function useHistory(): HistoryState {
+  const [state, setState] = useState<Omit<HistoryState, 'reload'>>({ data: null, error: null, loading: true });
+  const [attempt, setAttempt] = useState(0);
+
+  useEffect(() => {
+    let cancelled = false;
+    let timer: number | undefined;
+    let controller: AbortController | null = null;
+    let latest: HistoryResponse | null = null;
+    let failed = false;
+    let seq = 0;
+
+    const schedule = () => {
+      window.clearTimeout(timer);
+      if (document.hidden) return;
+      timer = window.setTimeout(load, failed ? HISTORY_ERROR_RETRY_MS : historyPollMs(latest));
+    };
+
+    async function load() {
+      const id = ++seq;
+      window.clearTimeout(timer);
+      controller?.abort();
+      controller = new AbortController();
+      try {
+        const res = await fetch('/api/history', { signal: controller.signal, headers: { accept: 'application/json' } });
+        const body: unknown = await res.json().catch((err: unknown) => {
+          if (isAbort(err)) throw err;
+          return null;
+        });
+        if (!res.ok) {
+          const message = (body as { error?: unknown } | null)?.error;
+          throw new Error(typeof message === 'string' ? message : `request failed with ${res.status}`);
+        }
+        if (!isHistoryResponse(body)) throw new Error('unexpected response from the server');
+        latest = body;
+        failed = false;
+        if (!cancelled) setState({ data: body, error: null, loading: false });
+      } catch (err) {
+        if (cancelled || isAbort(err)) return;
+        failed = true;
+        const message = err instanceof Error ? err.message : 'network error';
+        setState((prev) => ({ ...prev, error: message, loading: false }));
+      } finally {
+        if (!cancelled && id === seq) schedule();
+      }
+    }
+
+    const onVisibility = () => {
+      if (document.hidden) window.clearTimeout(timer);
+      else void load();
+    };
+
+    void load();
+    document.addEventListener('visibilitychange', onVisibility);
+    return () => {
+      cancelled = true;
+      window.clearTimeout(timer);
+      controller?.abort();
+      document.removeEventListener('visibilitychange', onVisibility);
+    };
+  }, [attempt]);
+
+  const reload = useCallback(() => setAttempt((n) => n + 1), []);
+  return { ...state, reload };
 }
 
 export function useNow(intervalMs: number): number {

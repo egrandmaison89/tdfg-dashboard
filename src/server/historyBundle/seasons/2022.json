@@ -1,0 +1,482 @@
+{
+  "season": 2022,
+  "complete": true,
+  "weeks": [
+    {
+      "season": 2022,
+      "week": 1,
+      "slateDate": "2022-09-11",
+      "status": "lost",
+      "games": 9,
+      "voidGames": 0,
+      "totalLegs": 36,
+      "hitLegs": 32,
+      "missedLegs": [
+        {
+          "abbr": "NE",
+          "type": "FG"
+        },
+        {
+          "abbr": "WSH",
+          "type": "FG"
+        },
+        {
+          "abbr": "CHI",
+          "type": "FG"
+        },
+        {
+          "abbr": "DET",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2022,
+      "week": 2,
+      "slateDate": "2022-09-18",
+      "status": "lost",
+      "games": 7,
+      "voidGames": 0,
+      "totalLegs": 28,
+      "hitLegs": 24,
+      "missedLegs": [
+        {
+          "abbr": "MIA",
+          "type": "FG"
+        },
+        {
+          "abbr": "IND",
+          "type": "TD"
+        },
+        {
+          "abbr": "IND",
+          "type": "FG"
+        },
+        {
+          "abbr": "WSH",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2022,
+      "week": 3,
+      "slateDate": "2022-09-25",
+      "status": "lost",
+      "games": 9,
+      "voidGames": 0,
+      "totalLegs": 36,
+      "hitLegs": 31,
+      "missedLegs": [
+        {
+          "abbr": "NO",
+          "type": "FG"
+        },
+        {
+          "abbr": "MIA",
+          "type": "FG"
+        },
+        {
+          "abbr": "MIN",
+          "type": "FG"
+        },
+        {
+          "abbr": "NYJ",
+          "type": "TD"
+        },
+        {
+          "abbr": "WSH",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2022,
+      "week": 4,
+      "slateDate": "2022-10-02",
+      "status": "lost",
+      "games": 9,
+      "voidGames": 0,
+      "totalLegs": 36,
+      "hitLegs": 34,
+      "missedLegs": [
+        {
+          "abbr": "CHI",
+          "type": "TD"
+        },
+        {
+          "abbr": "JAX",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2022,
+      "week": 5,
+      "slateDate": "2022-10-09",
+      "status": "lost",
+      "games": 9,
+      "voidGames": 0,
+      "totalLegs": 36,
+      "hitLegs": 28,
+      "missedLegs": [
+        {
+          "abbr": "PIT",
+          "type": "TD"
+        },
+        {
+          "abbr": "CLE",
+          "type": "FG"
+        },
+        {
+          "abbr": "JAX",
+          "type": "TD"
+        },
+        {
+          "abbr": "MIN",
+          "type": "FG"
+        },
+        {
+          "abbr": "DET",
+          "type": "TD"
+        },
+        {
+          "abbr": "DET",
+          "type": "FG"
+        },
+        {
+          "abbr": "ATL",
+          "type": "FG"
+        },
+        {
+          "abbr": "TEN",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2022,
+      "week": 6,
+      "slateDate": "2022-10-16",
+      "status": "lost",
+      "games": 8,
+      "voidGames": 0,
+      "totalLegs": 32,
+      "hitLegs": 29,
+      "missedLegs": [
+        {
+          "abbr": "SF",
+          "type": "FG"
+        },
+        {
+          "abbr": "ATL",
+          "type": "FG"
+        },
+        {
+          "abbr": "JAX",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2022,
+      "week": 7,
+      "slateDate": "2022-10-23",
+      "status": "lost",
+      "games": 7,
+      "voidGames": 0,
+      "totalLegs": 28,
+      "hitLegs": 23,
+      "missedLegs": [
+        {
+          "abbr": "TB",
+          "type": "TD"
+        },
+        {
+          "abbr": "CAR",
+          "type": "FG"
+        },
+        {
+          "abbr": "CIN",
+          "type": "FG"
+        },
+        {
+          "abbr": "DET",
+          "type": "TD"
+        },
+        {
+          "abbr": "GB",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2022,
+      "week": 8,
+      "slateDate": "2022-10-30",
+      "status": "lost",
+      "games": 7,
+      "voidGames": 0,
+      "totalLegs": 28,
+      "hitLegs": 23,
+      "missedLegs": [
+        {
+          "abbr": "DAL",
+          "type": "FG"
+        },
+        {
+          "abbr": "MIN",
+          "type": "FG"
+        },
+        {
+          "abbr": "LV",
+          "type": "TD"
+        },
+        {
+          "abbr": "LV",
+          "type": "FG"
+        },
+        {
+          "abbr": "PHI",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2022,
+      "week": 9,
+      "slateDate": "2022-11-06",
+      "status": "lost",
+      "games": 8,
+      "voidGames": 0,
+      "totalLegs": 32,
+      "hitLegs": 27,
+      "missedLegs": [
+        {
+          "abbr": "MIA",
+          "type": "FG"
+        },
+        {
+          "abbr": "CAR",
+          "type": "FG"
+        },
+        {
+          "abbr": "CIN",
+          "type": "FG"
+        },
+        {
+          "abbr": "DET",
+          "type": "FG"
+        },
+        {
+          "abbr": "IND",
+          "type": "TD"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2022,
+      "week": 10,
+      "slateDate": "2022-11-13",
+      "status": "lost",
+      "games": 7,
+      "voidGames": 0,
+      "totalLegs": 28,
+      "hitLegs": 27,
+      "missedLegs": [
+        {
+          "abbr": "KC",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2022,
+      "week": 11,
+      "slateDate": "2022-11-20",
+      "status": "lost",
+      "games": 8,
+      "voidGames": 0,
+      "totalLegs": 32,
+      "hitLegs": 29,
+      "missedLegs": [
+        {
+          "abbr": "CAR",
+          "type": "TD"
+        },
+        {
+          "abbr": "NYJ",
+          "type": "TD"
+        },
+        {
+          "abbr": "NYG",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2022,
+      "week": 12,
+      "slateDate": "2022-11-27",
+      "status": "won",
+      "games": 7,
+      "voidGames": 0,
+      "totalLegs": 28,
+      "hitLegs": 28,
+      "missedLegs": [],
+      "shortSlate": false
+    },
+    {
+      "season": 2022,
+      "week": 13,
+      "slateDate": "2022-12-04",
+      "status": "lost",
+      "games": 8,
+      "voidGames": 0,
+      "totalLegs": 32,
+      "hitLegs": 30,
+      "missedLegs": [
+        {
+          "abbr": "DEN",
+          "type": "TD"
+        },
+        {
+          "abbr": "PHI",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2022,
+      "week": 14,
+      "slateDate": "2022-12-11",
+      "status": "lost",
+      "games": 7,
+      "voidGames": 0,
+      "totalLegs": 28,
+      "hitLegs": 25,
+      "missedLegs": [
+        {
+          "abbr": "NYG",
+          "type": "FG"
+        },
+        {
+          "abbr": "PIT",
+          "type": "FG"
+        },
+        {
+          "abbr": "TEN",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2022,
+      "week": 15,
+      "slateDate": "2022-12-18",
+      "status": "lost",
+      "games": 6,
+      "voidGames": 0,
+      "totalLegs": 24,
+      "hitLegs": 22,
+      "missedLegs": [
+        {
+          "abbr": "NO",
+          "type": "FG"
+        },
+        {
+          "abbr": "CHI",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2022,
+      "week": 16,
+      "slateDate": "2022-12-25",
+      "status": "won",
+      "games": 1,
+      "voidGames": 0,
+      "totalLegs": 4,
+      "hitLegs": 4,
+      "missedLegs": [],
+      "shortSlate": true
+    },
+    {
+      "season": 2022,
+      "week": 17,
+      "slateDate": "2023-01-01",
+      "status": "lost",
+      "games": 9,
+      "voidGames": 0,
+      "totalLegs": 36,
+      "hitLegs": 33,
+      "missedLegs": [
+        {
+          "abbr": "HOU",
+          "type": "TD"
+        },
+        {
+          "abbr": "KC",
+          "type": "FG"
+        },
+        {
+          "abbr": "MIA",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2022,
+      "week": 18,
+      "slateDate": "2023-01-08",
+      "status": "lost",
+      "games": 8,
+      "voidGames": 0,
+      "totalLegs": 32,
+      "hitLegs": 26,
+      "missedLegs": [
+        {
+          "abbr": "BUF",
+          "type": "FG"
+        },
+        {
+          "abbr": "CHI",
+          "type": "FG"
+        },
+        {
+          "abbr": "NYJ",
+          "type": "TD"
+        },
+        {
+          "abbr": "MIA",
+          "type": "TD"
+        },
+        {
+          "abbr": "NO",
+          "type": "FG"
+        },
+        {
+          "abbr": "CLE",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    }
+  ]
+}

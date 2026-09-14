@@ -4,7 +4,7 @@ import { regulationRemaining } from './clock';
 import { gameRisk, missingLegs, RISK_SEVERITY, teamRisk } from './risk';
 import type { Game, LegType, RiskLevel, TeamLine } from './types';
 
-export type BetStatus = 'NO_GAMES' | 'NOT_STARTED' | 'ALIVE' | 'WON' | 'BUSTED';
+export type BetStatus = 'NO_GAMES' | 'NO_BET' | 'NOT_STARTED' | 'ALIVE' | 'WON' | 'BUSTED';
 
 export interface NeededEntry {
   game: Game;
@@ -80,7 +80,10 @@ export function summarizeBet(games: Game[]): BetSummary {
   needed.sort(compareNeeded);
 
   let status: BetStatus;
-  if (totalLegs === 0) status = 'NO_GAMES';
+  if (games.length === 0) status = 'NO_GAMES';
+  // Any postponed/canceled game means the week doesn't count (R10); legs keep tracking for fun.
+  else if (active.length < games.length) status = 'NO_BET';
+  else if (totalLegs === 0) status = 'NO_GAMES';
   else if (hitLegs === totalLegs) status = 'WON';
   else if (bustedLegs.length > 0) status = 'BUSTED';
   else if (active.every((g) => g.state === 'pre')) status = 'NOT_STARTED';

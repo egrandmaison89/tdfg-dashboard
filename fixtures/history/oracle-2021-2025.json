@@ -1,0 +1,1143 @@
+{
+ "2021-1": {
+  "season": 2021,
+  "week": 1,
+  "games": 9,
+  "legs": 36,
+  "hit": 31,
+  "busted": [
+   "ATL TD",
+   "TEN FG",
+   "SEA FG",
+   "NYJ FG",
+   "JAX FG"
+  ]
+ },
+ "2021-2": {
+  "season": 2021,
+  "week": 2,
+  "games": 9,
+  "legs": 36,
+  "hit": 29,
+  "busted": [
+   "HOU FG",
+   "BUF FG",
+   "MIA TD",
+   "MIA FG",
+   "NYJ TD",
+   "NO FG",
+   "JAX FG"
+  ]
+ },
+ "2021-3": {
+  "season": 2021,
+  "week": 3,
+  "games": 9,
+  "legs": 36,
+  "hit": 32,
+  "busted": [
+   "WSH FG",
+   "CHI TD",
+   "NO FG",
+   "JAX FG"
+  ]
+ },
+ "2021-4": {
+  "season": 2021,
+  "week": 4,
+  "games": 9,
+  "legs": 36,
+  "hit": 29,
+  "busted": [
+   "HOU TD",
+   "HOU FG",
+   "DET FG",
+   "CAR FG",
+   "MIN FG",
+   "NO FG",
+   "KC FG"
+  ]
+ },
+ "2021-5": {
+  "season": 2021,
+  "week": 5,
+  "games": 8,
+  "legs": 32,
+  "hit": 29,
+  "busted": [
+   "CIN FG",
+   "NO FG",
+   "JAX FG"
+  ]
+ },
+ "2021-6": {
+  "season": 2021,
+  "week": 6,
+  "games": 7,
+  "legs": 28,
+  "hit": 25,
+  "busted": [
+   "CHI FG",
+   "HOU TD",
+   "LAC FG"
+  ]
+ },
+ "2021-7": {
+  "season": 2021,
+  "week": 7,
+  "games": 6,
+  "legs": 24,
+  "hit": 20,
+  "busted": [
+   "KC TD",
+   "MIA FG",
+   "NYJ FG",
+   "CAR TD"
+  ]
+ },
+ "2021-8": {
+  "season": 2021,
+  "week": 8,
+  "games": 8,
+  "legs": 32,
+  "hit": 30,
+  "busted": [
+   "DET FG",
+   "HOU FG"
+  ]
+ },
+ "2021-9": {
+  "season": 2021,
+  "week": 9,
+  "games": 8,
+  "legs": 32,
+  "hit": 27,
+  "busted": [
+   "DAL FG",
+   "HOU TD",
+   "CAR TD",
+   "BUF TD",
+   "JAX TD"
+  ]
+ },
+ "2021-10": {
+  "season": 2021,
+  "week": 10,
+  "games": 7,
+  "legs": 28,
+  "hit": 25,
+  "busted": [
+   "ATL TD",
+   "DAL FG",
+   "CLE FG"
+  ]
+ },
+ "2021-11": {
+  "season": 2021,
+  "week": 11,
+  "games": 9,
+  "legs": 36,
+  "hit": 31,
+  "busted": [
+   "BUF FG",
+   "CHI FG",
+   "CLE FG",
+   "TEN FG",
+   "CAR FG"
+  ]
+ },
+ "2021-12": {
+  "season": 2021,
+  "week": 12,
+  "games": 7,
+  "legs": 28,
+  "hit": 24,
+  "busted": [
+   "TEN FG",
+   "PHI FG",
+   "ATL FG",
+   "HOU FG"
+  ]
+ },
+ "2021-13": {
+  "season": 2021,
+  "week": 13,
+  "games": 7,
+  "legs": 28,
+  "hit": 23,
+  "busted": [
+   "CHI FG",
+   "NYG TD",
+   "NYJ FG",
+   "HOU TD",
+   "HOU FG"
+  ]
+ },
+ "2021-14": {
+  "season": 2021,
+  "week": 14,
+  "games": 7,
+  "legs": 28,
+  "hit": 23,
+  "busted": [
+   "JAX TD",
+   "JAX FG",
+   "NYJ TD",
+   "WSH FG",
+   "CAR FG"
+  ]
+ },
+ "2021-15": {
+  "season": 2021,
+  "week": 15,
+  "games": 6,
+  "legs": 24,
+  "hit": 22,
+  "busted": [
+   "CAR FG",
+   "NYG TD"
+  ]
+ },
+ "2021-16": {
+  "season": 2021,
+  "week": 16,
+  "games": 8,
+  "legs": 32,
+  "hit": 29,
+  "busted": [
+   "BAL FG",
+   "NE FG",
+   "CAR TD"
+  ]
+ },
+ "2021-17": {
+  "season": 2021,
+  "week": 17,
+  "games": 9,
+  "legs": 36,
+  "hit": 32,
+  "busted": [
+   "BUF FG",
+   "NYG TD",
+   "MIA TD",
+   "LAR FG"
+  ]
+ },
+ "2021-18": {
+  "season": 2021,
+  "week": 18,
+  "games": 7,
+  "legs": 28,
+  "hit": 25,
+  "busted": [
+   "CLE FG",
+   "NYG FG",
+   "TEN FG"
+  ]
+ },
+ "2022-1": {
+  "season": 2022,
+  "week": 1,
+  "games": 9,
+  "legs": 36,
+  "hit": 32,
+  "busted": [
+   "CHI FG",
+   "DET FG",
+   "NE FG",
+   "WSH FG"
+  ]
+ },
+ "2022-2": {
+  "season": 2022,
+  "week": 2,
+  "games": 7,
+  "legs": 28,
+  "hit": 24,
+  "busted": [
+   "WSH FG",
+   "IND TD",
+   "IND FG",
+   "MIA FG"
+  ]
+ },
+ "2022-3": {
+  "season": 2022,
+  "week": 3,
+  "games": 9,
+  "legs": 36,
+  "hit": 31,
+  "busted": [
+   "MIA FG",
+   "MIN FG",
+   "NYJ TD",
+   "WSH FG",
+   "NO FG"
+  ]
+ },
+ "2022-4": {
+  "season": 2022,
+  "week": 4,
+  "games": 9,
+  "legs": 36,
+  "hit": 34,
+  "busted": [
+   "CHI TD",
+   "JAX FG"
+  ]
+ },
+ "2022-5": {
+  "season": 2022,
+  "week": 5,
+  "games": 9,
+  "legs": 36,
+  "hit": 28,
+  "busted": [
+   "PIT TD",
+   "CLE FG",
+   "MIN FG",
+   "DET TD",
+   "DET FG",
+   "ATL FG",
+   "TEN FG",
+   "JAX TD"
+  ]
+ },
+ "2022-6": {
+  "season": 2022,
+  "week": 6,
+  "games": 8,
+  "legs": 32,
+  "hit": 29,
+  "busted": [
+   "SF FG",
+   "ATL FG",
+   "JAX FG"
+  ]
+ },
+ "2022-7": {
+  "season": 2022,
+  "week": 7,
+  "games": 7,
+  "legs": 28,
+  "hit": 23,
+  "busted": [
+   "CIN FG",
+   "DET TD",
+   "GB FG",
+   "TB TD",
+   "CAR FG"
+  ]
+ },
+ "2022-8": {
+  "season": 2022,
+  "week": 8,
+  "games": 7,
+  "legs": 28,
+  "hit": 23,
+  "busted": [
+   "DAL FG",
+   "MIN FG",
+   "LV TD",
+   "LV FG",
+   "PHI FG"
+  ]
+ },
+ "2022-9": {
+  "season": 2022,
+  "week": 9,
+  "games": 8,
+  "legs": 32,
+  "hit": 27,
+  "busted": [
+   "MIA FG",
+   "CAR FG",
+   "CIN FG",
+   "DET FG",
+   "IND TD"
+  ]
+ },
+ "2022-10": {
+  "season": 2022,
+  "week": 10,
+  "games": 7,
+  "legs": 28,
+  "hit": 27,
+  "busted": [
+   "KC FG"
+  ]
+ },
+ "2022-11": {
+  "season": 2022,
+  "week": 11,
+  "games": 8,
+  "legs": 32,
+  "hit": 29,
+  "busted": [
+   "NYJ TD",
+   "NYG FG",
+   "CAR TD"
+  ]
+ },
+ "2022-12": {
+  "season": 2022,
+  "week": 12,
+  "games": 7,
+  "legs": 28,
+  "hit": 28,
+  "busted": []
+ },
+ "2022-13": {
+  "season": 2022,
+  "week": 13,
+  "games": 8,
+  "legs": 32,
+  "hit": 30,
+  "busted": [
+   "PHI FG",
+   "DEN TD"
+  ]
+ },
+ "2022-14": {
+  "season": 2022,
+  "week": 14,
+  "games": 7,
+  "legs": 28,
+  "hit": 25,
+  "busted": [
+   "TEN FG",
+   "NYG FG",
+   "PIT FG"
+  ]
+ },
+ "2022-15": {
+  "season": 2022,
+  "week": 15,
+  "games": 6,
+  "legs": 24,
+  "hit": 22,
+  "busted": [
+   "CHI FG",
+   "NO FG"
+  ]
+ },
+ "2022-16": {
+  "season": 2022,
+  "week": 16,
+  "games": 1,
+  "legs": 4,
+  "hit": 4,
+  "busted": []
+ },
+ "2022-17": {
+  "season": 2022,
+  "week": 17,
+  "games": 9,
+  "legs": 36,
+  "hit": 33,
+  "busted": [
+   "KC FG",
+   "MIA FG",
+   "HOU TD"
+  ]
+ },
+ "2022-18": {
+  "season": 2022,
+  "week": 18,
+  "games": 8,
+  "legs": 32,
+  "hit": 26,
+  "busted": [
+   "BUF FG",
+   "CHI FG",
+   "NYJ TD",
+   "MIA TD",
+   "NO FG",
+   "CLE FG"
+  ]
+ },
+ "2023-1": {
+  "season": 2023,
+  "week": 1,
+  "games": 8,
+  "legs": 32,
+  "hit": 27,
+  "busted": [
+   "CIN TD",
+   "IND FG",
+   "TEN TD",
+   "PIT FG",
+   "HOU TD"
+  ]
+ },
+ "2023-2": {
+  "season": 2023,
+  "week": 2,
+  "games": 8,
+  "legs": 32,
+  "hit": 31,
+  "busted": [
+   "JAX TD"
+  ]
+ },
+ "2023-3": {
+  "season": 2023,
+  "week": 3,
+  "games": 9,
+  "legs": 36,
+  "hit": 31,
+  "busted": [
+   "TEN TD",
+   "ATL TD",
+   "MIA FG",
+   "LAC FG",
+   "WSH TD"
+  ]
+ },
+ "2023-4": {
+  "season": 2023,
+  "week": 4,
+  "games": 9,
+  "legs": 36,
+  "hit": 27,
+  "busted": [
+   "MIA FG",
+   "CHI FG",
+   "BAL FG",
+   "CLE TD",
+   "CIN TD",
+   "IND FG",
+   "NO TD",
+   "MIN FG",
+   "PIT TD"
+  ]
+ },
+ "2023-5": {
+  "season": 2023,
+  "week": 5,
+  "games": 6,
+  "legs": 24,
+  "hit": 21,
+  "busted": [
+   "DET FG",
+   "NE TD",
+   "NE FG"
+  ]
+ },
+ "2023-6": {
+  "season": 2023,
+  "week": 6,
+  "games": 7,
+  "legs": 28,
+  "hit": 26,
+  "busted": [
+   "CAR FG",
+   "MIA FG"
+  ]
+ },
+ "2023-7": {
+  "season": 2023,
+  "week": 7,
+  "games": 6,
+  "legs": 24,
+  "hit": 21,
+  "busted": [
+   "WSH FG",
+   "NYG FG",
+   "DET FG"
+  ]
+ },
+ "2023-8": {
+  "season": 2023,
+  "week": 8,
+  "games": 9,
+  "legs": 36,
+  "hit": 34,
+  "busted": [
+   "TEN FG",
+   "HOU FG"
+  ]
+ },
+ "2023-9": {
+  "season": 2023,
+  "week": 9,
+  "games": 7,
+  "legs": 28,
+  "hit": 24,
+  "busted": [
+   "ARI TD",
+   "ARI FG",
+   "LAR TD",
+   "SEA TD"
+  ]
+ },
+ "2023-10": {
+  "season": 2023,
+  "week": 10,
+  "games": 6,
+  "legs": 24,
+  "hit": 22,
+  "busted": [
+   "TEN TD",
+   "JAX TD"
+  ]
+ },
+ "2023-11": {
+  "season": 2023,
+  "week": 11,
+  "games": 8,
+  "legs": 32,
+  "hit": 29,
+  "busted": [
+   "DET FG",
+   "TEN FG",
+   "HOU FG"
+  ]
+ },
+ "2023-12": {
+  "season": 2023,
+  "week": 12,
+  "games": 6,
+  "legs": 24,
+  "hit": 21,
+  "busted": [
+   "NO TD",
+   "NE FG",
+   "HOU FG"
+  ]
+ },
+ "2023-13": {
+  "season": 2023,
+  "week": 13,
+  "games": 7,
+  "legs": 28,
+  "hit": 22,
+  "busted": [
+   "LAC TD",
+   "NE TD",
+   "NE FG",
+   "NO FG",
+   "NYJ TD",
+   "WSH FG"
+  ]
+ },
+ "2023-14": {
+  "season": 2023,
+  "week": 14,
+  "games": 7,
+  "legs": 28,
+  "hit": 22,
+  "busted": [
+   "DET FG",
+   "IND FG",
+   "JAX FG",
+   "CAR TD",
+   "NO FG",
+   "HOU FG"
+  ]
+ },
+ "2023-15": {
+  "season": 2023,
+  "week": 15,
+  "games": 7,
+  "legs": 28,
+  "hit": 23,
+  "busted": [
+   "NYJ TD",
+   "NYJ FG",
+   "NYG TD",
+   "ATL FG",
+   "CAR TD"
+  ]
+ },
+ "2023-16": {
+  "season": 2023,
+  "week": 16,
+  "games": 6,
+  "legs": 24,
+  "hit": 21,
+  "busted": [
+   "WSH FG",
+   "CLE FG",
+   "HOU FG"
+  ]
+ },
+ "2023-17": {
+  "season": 2023,
+  "week": 17,
+  "games": 10,
+  "legs": 40,
+  "hit": 33,
+  "busted": [
+   "NE FG",
+   "LAR FG",
+   "TB FG",
+   "CAR TD",
+   "CAR FG",
+   "BAL FG",
+   "TEN TD"
+  ]
+ },
+ "2023-18": {
+  "season": 2023,
+  "week": 18,
+  "games": 6,
+  "legs": 24,
+  "hit": 18,
+  "busted": [
+   "CLE FG",
+   "TEN FG",
+   "NE TD",
+   "TB TD",
+   "CAR TD",
+   "CAR FG"
+  ]
+ },
+ "2024-1": {
+  "season": 2024,
+  "week": 1,
+  "games": 8,
+  "legs": 32,
+  "hit": 28,
+  "busted": [
+   "PIT TD",
+   "IND FG",
+   "MIN FG",
+   "NYG TD"
+  ]
+ },
+ "2024-2": {
+  "season": 2024,
+  "week": 2,
+  "games": 10,
+  "legs": 40,
+  "hit": 37,
+  "busted": [
+   "NYG FG",
+   "WSH TD",
+   "CAR TD"
+  ]
+ },
+ "2024-3": {
+  "season": 2024,
+  "week": 3,
+  "games": 7,
+  "legs": 28,
+  "hit": 21,
+  "busted": [
+   "NYG FG",
+   "CLE FG",
+   "TEN FG",
+   "IND FG",
+   "HOU FG",
+   "PHI FG",
+   "TB FG"
+  ]
+ },
+ "2024-4": {
+  "season": 2024,
+  "week": 4,
+  "games": 8,
+  "legs": 32,
+  "hit": 29,
+  "busted": [
+   "GB FG",
+   "NYJ TD",
+   "PHI FG"
+  ]
+ },
+ "2024-5": {
+  "season": 2024,
+  "week": 5,
+  "games": 6,
+  "legs": 24,
+  "hit": 23,
+  "busted": [
+   "CIN FG"
+  ]
+ },
+ "2024-6": {
+  "season": 2024,
+  "week": 6,
+  "games": 6,
+  "legs": 24,
+  "hit": 23,
+  "busted": [
+   "NE FG"
+  ]
+ },
+ "2024-7": {
+  "season": 2024,
+  "week": 7,
+  "games": 7,
+  "legs": 28,
+  "hit": 23,
+  "busted": [
+   "ATL FG",
+   "CIN FG",
+   "CLE FG",
+   "PHI FG",
+   "NYG TD"
+  ]
+ },
+ "2024-8": {
+  "season": 2024,
+  "week": 8,
+  "games": 8,
+  "legs": 32,
+  "hit": 31,
+  "busted": [
+   "TEN FG"
+  ]
+ },
+ "2024-9": {
+  "season": 2024,
+  "week": 9,
+  "games": 8,
+  "legs": 32,
+  "hit": 30,
+  "busted": [
+   "ATL FG",
+   "LAC FG"
+  ]
+ },
+ "2024-10": {
+  "season": 2024,
+  "week": 10,
+  "games": 7,
+  "legs": 28,
+  "hit": 23,
+  "busted": [
+   "CHI TD",
+   "DEN FG",
+   "PIT FG",
+   "MIN TD",
+   "JAX FG"
+  ]
+ },
+ "2024-11": {
+  "season": 2024,
+  "week": 11,
+  "games": 8,
+  "legs": 32,
+  "hit": 26,
+  "busted": [
+   "GB FG",
+   "JAX TD",
+   "LAR FG",
+   "CLE FG",
+   "NO FG",
+   "PIT TD"
+  ]
+ },
+ "2024-12": {
+  "season": 2024,
+  "week": 12,
+  "games": 7,
+  "legs": 28,
+  "hit": 25,
+  "busted": [
+   "IND TD",
+   "NE FG",
+   "NYG FG"
+  ]
+ },
+ "2024-13": {
+  "season": 2024,
+  "week": 13,
+  "games": 7,
+  "legs": 28,
+  "hit": 26,
+  "busted": [
+   "NYJ FG",
+   "WSH FG"
+  ]
+ },
+ "2024-14": {
+  "season": 2024,
+  "week": 14,
+  "games": 7,
+  "legs": 28,
+  "hit": 22,
+  "busted": [
+   "TEN TD",
+   "MIN FG",
+   "NO FG",
+   "PHI FG",
+   "CLE FG",
+   "TB FG"
+  ]
+ },
+ "2024-15": {
+  "season": 2024,
+  "week": 15,
+  "games": 7,
+  "legs": 28,
+  "hit": 22,
+  "busted": [
+   "KC FG",
+   "CLE FG",
+   "TEN FG",
+   "BAL FG",
+   "NYG FG",
+   "CAR FG"
+  ]
+ },
+ "2024-16": {
+  "season": 2024,
+  "week": 16,
+  "games": 7,
+  "legs": 28,
+  "hit": 24,
+  "busted": [
+   "NYG FG",
+   "CLE FG",
+   "TEN FG",
+   "WSH FG"
+  ]
+ },
+ "2024-17": {
+  "season": 2024,
+  "week": 17,
+  "games": 6,
+  "legs": 24,
+  "hit": 21,
+  "busted": [
+   "NYJ FG",
+   "DAL FG",
+   "CAR FG"
+  ]
+ },
+ "2024-18": {
+  "season": 2024,
+  "week": 18,
+  "games": 8,
+  "legs": 32,
+  "hit": 32,
+  "busted": []
+ },
+ "2025-1": {
+  "season": 2025,
+  "week": 1,
+  "games": 8,
+  "legs": 32,
+  "hit": 29,
+  "busted": [
+   "MIA FG",
+   "NYG TD",
+   "WSH FG"
+  ]
+ },
+ "2025-2": {
+  "season": 2025,
+  "week": 2,
+  "games": 9,
+  "legs": 36,
+  "hit": 34,
+  "busted": [
+   "CHI FG",
+   "NO FG"
+  ]
+ },
+ "2025-3": {
+  "season": 2025,
+  "week": 3,
+  "games": 9,
+  "legs": 36,
+  "hit": 31,
+  "busted": [
+   "PIT FG",
+   "NE FG",
+   "PHI FG",
+   "ATL TD",
+   "ATL FG"
+  ]
+ },
+ "2025-4": {
+  "season": 2025,
+  "week": 4,
+  "games": 7,
+  "legs": 28,
+  "hit": 24,
+  "busted": [
+   "CAR FG",
+   "NE FG",
+   "TEN TD",
+   "TEN FG"
+  ]
+ },
+ "2025-5": {
+  "season": 2025,
+  "week": 5,
+  "games": 6,
+  "legs": 24,
+  "hit": 21,
+  "busted": [
+   "LV TD",
+   "IND FG",
+   "NYG FG"
+  ]
+ },
+ "2025-6": {
+  "season": 2025,
+  "week": 6,
+  "games": 7,
+  "legs": 28,
+  "hit": 25,
+  "busted": [
+   "CLE TD",
+   "JAX FG",
+   "BAL TD"
+  ]
+ },
+ "2025-7": {
+  "season": 2025,
+  "week": 7,
+  "games": 6,
+  "legs": 24,
+  "hit": 18,
+  "busted": [
+   "NO FG",
+   "MIA TD",
+   "LV TD",
+   "LV FG",
+   "PHI FG",
+   "NYJ TD"
+  ]
+ },
+ "2025-8": {
+  "season": 2025,
+  "week": 8,
+  "games": 7,
+  "legs": 28,
+  "hit": 26,
+  "busted": [
+   "CLE FG",
+   "SF FG"
+  ]
+ },
+ "2025-9": {
+  "season": 2025,
+  "week": 9,
+  "games": 8,
+  "legs": 32,
+  "hit": 31,
+  "busted": [
+   "HOU TD"
+  ]
+ },
+ "2025-10": {
+  "season": 2025,
+  "week": 10,
+  "games": 7,
+  "legs": 28,
+  "hit": 25,
+  "busted": [
+   "BUF FG",
+   "NE FG",
+   "CAR FG"
+  ]
+ },
+ "2025-11": {
+  "season": 2025,
+  "week": 11,
+  "games": 7,
+  "legs": 28,
+  "hit": 24,
+  "busted": [
+   "GB FG",
+   "NYG FG",
+   "LAC TD",
+   "JAX FG"
+  ]
+ },
+ "2025-12": {
+  "season": 2025,
+  "week": 12,
+  "games": 7,
+  "legs": 28,
+  "hit": 26,
+  "busted": [
+   "PIT FG",
+   "MIN TD"
+  ]
+ },
+ "2025-13": {
+  "season": 2025,
+  "week": 13,
+  "games": 7,
+  "legs": 28,
+  "hit": 25,
+  "busted": [
+   "CLE FG",
+   "TEN TD",
+   "LAR FG"
+  ]
+ },
+ "2025-14": {
+  "season": 2025,
+  "week": 14,
+  "games": 8,
+  "legs": 32,
+  "hit": 28,
+  "busted": [
+   "ATL TD",
+   "CIN FG",
+   "WSH TD",
+   "WSH FG"
+  ]
+ },
+ "2025-15": {
+  "season": 2025,
+  "week": 15,
+  "games": 8,
+  "legs": 32,
+  "hit": 24,
+  "busted": [
+   "CLE TD",
+   "CIN TD",
+   "CIN FG",
+   "BUF FG",
+   "NYG FG",
+   "LV TD",
+   "LV FG",
+   "ARI FG"
+  ]
+ },
+ "2025-16": {
+  "season": 2025,
+  "week": 16,
+  "games": 7,
+  "legs": 28,
+  "hit": 25,
+  "busted": [
+   "KC TD",
+   "MIA FG",
+   "NYJ TD"
+  ]
+ },
+ "2025-17": {
+  "season": 2025,
+  "week": 17,
+  "games": 7,
+  "legs": 28,
+  "hit": 25,
+  "busted": [
+   "ARI FG",
+   "PIT TD",
+   "NE FG"
+  ]
+ },
+ "2025-18": {
+  "season": 2025,
+  "week": 18,
+  "games": 6,
+  "legs": 24,
+  "hit": 21,
+  "busted": [
+   "CIN FG",
+   "GB TD",
+   "TEN FG"
+  ]
+ }
+}

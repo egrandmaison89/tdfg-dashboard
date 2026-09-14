@@ -1,8 +1,10 @@
 /** HTTP layer for GET /api/slate: params, source selection, headers, errors. */
 
+import type { SeasonHistory } from '../shared/history';
+import { buildHistory } from './buildHistory';
 import { buildSlate } from './buildSlate';
 import { MemoryCache, type KeyValueCache } from './cache';
-import { cacheHeaders, cdnTtlSeconds, TTL } from './cacheHeaders';
+import { cacheHeaders, cdnTtlSeconds, historyTtlSeconds, TTL } from './cacheHeaders';
 import { DemoSource } from './demo';
 import { EspnSource, type SlateParams } from './source';
 
@@ -82,9 +84,43 @@ export async function handleSlateRequest(req: Request, deps: HandlerDeps): Promi
 
   try {
     const slate = await buildSlate(query.params, { source, cache, now, log });
-    return json(200, slate, cacheHeaders(cdnTtlSeconds(slate, now().getTime())));
+    const ttl = cdnTtlSeconds(slate, now().getTime(), { pinnedWeek: query.params.week !== undefined });
+    return json(200, slate, cacheHeaders(ttl));
   } catch (err) {
     log('failed to build slate', err);
     return json(503, { error: 'Scores are temporarily unavailable. Retrying shortly.' }, cacheHeaders(TTL.error));
+  }
+}
+
+export interface HistoryHandlerDeps extends HandlerDeps {
+  bundle: Record<number, SeasonHistory>;
+  startSeason?: number;
+}
+
+/** GET /api/history (SPEC §5b). Takes no parameters, so the CDN holds exactly one entry. */
+export async function handleHistoryRequest(req: Request, deps: HistoryHandlerDeps): Promise<Response> {
+  const now = deps.now ?? (() => new Date());
+  const log = deps.log ?? ((message, err) => console.error(`[history] ${message}`, err ?? ''));
+
+  if (req.method !== 'GET' && req.method !== 'HEAD') {
+    return json(405, { error: 'Method not allowed' }, { Allow: 'GET, HEAD' });
+  }
+  if (new URL(req.url).search !== '') {
+    return json(400, { error: '/api/history does not take query parameters' }, cacheHeaders(TTL.idle));
+  }
+
+  try {
+    const history = await buildHistory({
+      source: new EspnSource(deps.fetchImpl),
+      cache: deps.cache,
+      now,
+      log,
+      bundle: deps.bundle,
+      ...(deps.startSeason !== undefined ? { startSeason: deps.startSeason } : {}),
+    });
+    return json(200, history, cacheHeaders(historyTtlSeconds(history)));
+  } catch (err) {
+    log('failed to build history', err);
+    return json(503, { error: 'History is temporarily unavailable. Retrying shortly.' }, cacheHeaders(TTL.error));
   }
 }

@@ -1,4 +1,12 @@
 import { expect, test, type Page } from '@playwright/test';
+import { mockHistory } from './mocks';
+
+// Keep board tests hermetic: the shell always loads /api/history for the week strip.
+test.beforeEach(async ({ page }) => {
+  await page.route('**/api/history**', (route) =>
+    route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(mockHistory()) }),
+  );
+});
 
 const SEVERITY: Record<string, number> = { void: -1, done: 0, pregame: 1, ok: 2, watch: 3, danger: 4, busted: 5 };
 
@@ -186,11 +194,11 @@ test.describe('live mode (mocked API)', () => {
     await expect(page.getByTestId('updated-ago')).toBeVisible();
   });
 
-  test('week navigation requests the selected week', async ({ page }) => {
+  test('week strip requests the selected week', async ({ page }) => {
     await page.goto('/');
     await expect(page.getByTestId('bet-status')).toBeVisible();
     const request = page.waitForRequest(/\/api\/slate\?week=2&seasontype=2&year=2026/);
-    await page.getByRole('button', { name: 'Next week' }).click();
+    await page.locator('[data-testid="season-picker"] [data-week="2"]').click();
     await request;
     await expect(page).toHaveURL(/week=2/);
   });

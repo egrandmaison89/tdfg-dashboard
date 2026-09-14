@@ -1,0 +1,487 @@
+{
+  "season": 2024,
+  "complete": true,
+  "weeks": [
+    {
+      "season": 2024,
+      "week": 1,
+      "slateDate": "2024-09-08",
+      "status": "lost",
+      "games": 8,
+      "voidGames": 0,
+      "totalLegs": 32,
+      "hitLegs": 28,
+      "missedLegs": [
+        {
+          "abbr": "MIN",
+          "type": "FG"
+        },
+        {
+          "abbr": "NYG",
+          "type": "TD"
+        },
+        {
+          "abbr": "PIT",
+          "type": "TD"
+        },
+        {
+          "abbr": "IND",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2024,
+      "week": 2,
+      "slateDate": "2024-09-15",
+      "status": "lost",
+      "games": 10,
+      "voidGames": 0,
+      "totalLegs": 40,
+      "hitLegs": 37,
+      "missedLegs": [
+        {
+          "abbr": "CAR",
+          "type": "TD"
+        },
+        {
+          "abbr": "NYG",
+          "type": "FG"
+        },
+        {
+          "abbr": "WSH",
+          "type": "TD"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2024,
+      "week": 3,
+      "slateDate": "2024-09-22",
+      "status": "lost",
+      "games": 7,
+      "voidGames": 0,
+      "totalLegs": 28,
+      "hitLegs": 21,
+      "missedLegs": [
+        {
+          "abbr": "HOU",
+          "type": "FG"
+        },
+        {
+          "abbr": "PHI",
+          "type": "FG"
+        },
+        {
+          "abbr": "TB",
+          "type": "FG"
+        },
+        {
+          "abbr": "TEN",
+          "type": "FG"
+        },
+        {
+          "abbr": "NYG",
+          "type": "FG"
+        },
+        {
+          "abbr": "CLE",
+          "type": "FG"
+        },
+        {
+          "abbr": "IND",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2024,
+      "week": 4,
+      "slateDate": "2024-09-29",
+      "status": "lost",
+      "games": 8,
+      "voidGames": 0,
+      "totalLegs": 32,
+      "hitLegs": 29,
+      "missedLegs": [
+        {
+          "abbr": "NYJ",
+          "type": "TD"
+        },
+        {
+          "abbr": "GB",
+          "type": "FG"
+        },
+        {
+          "abbr": "PHI",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2024,
+      "week": 5,
+      "slateDate": "2024-10-06",
+      "status": "lost",
+      "games": 6,
+      "voidGames": 0,
+      "totalLegs": 24,
+      "hitLegs": 23,
+      "missedLegs": [
+        {
+          "abbr": "CIN",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2024,
+      "week": 6,
+      "slateDate": "2024-10-13",
+      "status": "lost",
+      "games": 6,
+      "voidGames": 0,
+      "totalLegs": 24,
+      "hitLegs": 23,
+      "missedLegs": [
+        {
+          "abbr": "NE",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2024,
+      "week": 7,
+      "slateDate": "2024-10-20",
+      "status": "lost",
+      "games": 7,
+      "voidGames": 0,
+      "totalLegs": 28,
+      "hitLegs": 23,
+      "missedLegs": [
+        {
+          "abbr": "PHI",
+          "type": "FG"
+        },
+        {
+          "abbr": "NYG",
+          "type": "TD"
+        },
+        {
+          "abbr": "ATL",
+          "type": "FG"
+        },
+        {
+          "abbr": "CIN",
+          "type": "FG"
+        },
+        {
+          "abbr": "CLE",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2024,
+      "week": 8,
+      "slateDate": "2024-10-27",
+      "status": "lost",
+      "games": 8,
+      "voidGames": 0,
+      "totalLegs": 32,
+      "hitLegs": 31,
+      "missedLegs": [
+        {
+          "abbr": "TEN",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2024,
+      "week": 9,
+      "slateDate": "2024-11-03",
+      "status": "lost",
+      "games": 8,
+      "voidGames": 0,
+      "totalLegs": 32,
+      "hitLegs": 30,
+      "missedLegs": [
+        {
+          "abbr": "LAC",
+          "type": "FG"
+        },
+        {
+          "abbr": "ATL",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2024,
+      "week": 10,
+      "slateDate": "2024-11-10",
+      "status": "lost",
+      "games": 7,
+      "voidGames": 0,
+      "totalLegs": 28,
+      "hitLegs": 23,
+      "missedLegs": [
+        {
+          "abbr": "DEN",
+          "type": "FG"
+        },
+        {
+          "abbr": "PIT",
+          "type": "FG"
+        },
+        {
+          "abbr": "MIN",
+          "type": "TD"
+        },
+        {
+          "abbr": "JAX",
+          "type": "FG"
+        },
+        {
+          "abbr": "CHI",
+          "type": "TD"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2024,
+      "week": 11,
+      "slateDate": "2024-11-17",
+      "status": "lost",
+      "games": 8,
+      "voidGames": 0,
+      "totalLegs": 32,
+      "hitLegs": 26,
+      "missedLegs": [
+        {
+          "abbr": "PIT",
+          "type": "TD"
+        },
+        {
+          "abbr": "JAX",
+          "type": "TD"
+        },
+        {
+          "abbr": "LAR",
+          "type": "FG"
+        },
+        {
+          "abbr": "CLE",
+          "type": "FG"
+        },
+        {
+          "abbr": "NO",
+          "type": "FG"
+        },
+        {
+          "abbr": "GB",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2024,
+      "week": 12,
+      "slateDate": "2024-11-24",
+      "status": "lost",
+      "games": 7,
+      "voidGames": 0,
+      "totalLegs": 28,
+      "hitLegs": 25,
+      "missedLegs": [
+        {
+          "abbr": "NYG",
+          "type": "FG"
+        },
+        {
+          "abbr": "NE",
+          "type": "FG"
+        },
+        {
+          "abbr": "IND",
+          "type": "TD"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2024,
+      "week": 13,
+      "slateDate": "2024-12-01",
+      "status": "lost",
+      "games": 7,
+      "voidGames": 0,
+      "totalLegs": 28,
+      "hitLegs": 26,
+      "missedLegs": [
+        {
+          "abbr": "NYJ",
+          "type": "FG"
+        },
+        {
+          "abbr": "WSH",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2024,
+      "week": 14,
+      "slateDate": "2024-12-08",
+      "status": "lost",
+      "games": 7,
+      "voidGames": 0,
+      "totalLegs": 28,
+      "hitLegs": 22,
+      "missedLegs": [
+        {
+          "abbr": "NO",
+          "type": "FG"
+        },
+        {
+          "abbr": "CLE",
+          "type": "FG"
+        },
+        {
+          "abbr": "MIN",
+          "type": "FG"
+        },
+        {
+          "abbr": "TB",
+          "type": "FG"
+        },
+        {
+          "abbr": "PHI",
+          "type": "FG"
+        },
+        {
+          "abbr": "TEN",
+          "type": "TD"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2024,
+      "week": 15,
+      "slateDate": "2024-12-15",
+      "status": "lost",
+      "games": 7,
+      "voidGames": 0,
+      "totalLegs": 28,
+      "hitLegs": 22,
+      "missedLegs": [
+        {
+          "abbr": "BAL",
+          "type": "FG"
+        },
+        {
+          "abbr": "NYG",
+          "type": "FG"
+        },
+        {
+          "abbr": "CAR",
+          "type": "FG"
+        },
+        {
+          "abbr": "TEN",
+          "type": "FG"
+        },
+        {
+          "abbr": "KC",
+          "type": "FG"
+        },
+        {
+          "abbr": "CLE",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2024,
+      "week": 16,
+      "slateDate": "2024-12-22",
+      "status": "lost",
+      "games": 7,
+      "voidGames": 0,
+      "totalLegs": 28,
+      "hitLegs": 24,
+      "missedLegs": [
+        {
+          "abbr": "WSH",
+          "type": "FG"
+        },
+        {
+          "abbr": "NYG",
+          "type": "FG"
+        },
+        {
+          "abbr": "CLE",
+          "type": "FG"
+        },
+        {
+          "abbr": "TEN",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2024,
+      "week": 17,
+      "slateDate": "2024-12-29",
+      "status": "lost",
+      "games": 6,
+      "voidGames": 0,
+      "totalLegs": 24,
+      "hitLegs": 21,
+      "missedLegs": [
+        {
+          "abbr": "NYJ",
+          "type": "FG"
+        },
+        {
+          "abbr": "CAR",
+          "type": "FG"
+        },
+        {
+          "abbr": "DAL",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2024,
+      "week": 18,
+      "slateDate": "2025-01-05",
+      "status": "won",
+      "games": 8,
+      "voidGames": 0,
+      "totalLegs": 32,
+      "hitLegs": 32,
+      "missedLegs": [],
+      "shortSlate": false
+    }
+  ]
+}

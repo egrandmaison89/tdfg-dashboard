@@ -1,0 +1,488 @@
+{
+  "season": 2025,
+  "complete": true,
+  "weeks": [
+    {
+      "season": 2025,
+      "week": 1,
+      "slateDate": "2025-09-07",
+      "status": "lost",
+      "games": 8,
+      "voidGames": 0,
+      "totalLegs": 32,
+      "hitLegs": 29,
+      "missedLegs": [
+        {
+          "abbr": "MIA",
+          "type": "FG"
+        },
+        {
+          "abbr": "NYG",
+          "type": "TD"
+        },
+        {
+          "abbr": "WSH",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2025,
+      "week": 2,
+      "slateDate": "2025-09-14",
+      "status": "lost",
+      "games": 9,
+      "voidGames": 0,
+      "totalLegs": 36,
+      "hitLegs": 34,
+      "missedLegs": [
+        {
+          "abbr": "NO",
+          "type": "FG"
+        },
+        {
+          "abbr": "CHI",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2025,
+      "week": 3,
+      "slateDate": "2025-09-21",
+      "status": "lost",
+      "games": 9,
+      "voidGames": 0,
+      "totalLegs": 36,
+      "hitLegs": 31,
+      "missedLegs": [
+        {
+          "abbr": "PIT",
+          "type": "FG"
+        },
+        {
+          "abbr": "NE",
+          "type": "FG"
+        },
+        {
+          "abbr": "ATL",
+          "type": "TD"
+        },
+        {
+          "abbr": "ATL",
+          "type": "FG"
+        },
+        {
+          "abbr": "PHI",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2025,
+      "week": 4,
+      "slateDate": "2025-09-28",
+      "status": "lost",
+      "games": 7,
+      "voidGames": 0,
+      "totalLegs": 28,
+      "hitLegs": 24,
+      "missedLegs": [
+        {
+          "abbr": "TEN",
+          "type": "TD"
+        },
+        {
+          "abbr": "TEN",
+          "type": "FG"
+        },
+        {
+          "abbr": "CAR",
+          "type": "FG"
+        },
+        {
+          "abbr": "NE",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2025,
+      "week": 5,
+      "slateDate": "2025-10-05",
+      "status": "lost",
+      "games": 6,
+      "voidGames": 0,
+      "totalLegs": 24,
+      "hitLegs": 21,
+      "missedLegs": [
+        {
+          "abbr": "NYG",
+          "type": "FG"
+        },
+        {
+          "abbr": "LV",
+          "type": "TD"
+        },
+        {
+          "abbr": "IND",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2025,
+      "week": 6,
+      "slateDate": "2025-10-12",
+      "status": "lost",
+      "games": 7,
+      "voidGames": 0,
+      "totalLegs": 28,
+      "hitLegs": 25,
+      "missedLegs": [
+        {
+          "abbr": "CLE",
+          "type": "TD"
+        },
+        {
+          "abbr": "BAL",
+          "type": "TD"
+        },
+        {
+          "abbr": "JAX",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2025,
+      "week": 7,
+      "slateDate": "2025-10-19",
+      "status": "lost",
+      "games": 6,
+      "voidGames": 0,
+      "totalLegs": 24,
+      "hitLegs": 18,
+      "missedLegs": [
+        {
+          "abbr": "LV",
+          "type": "TD"
+        },
+        {
+          "abbr": "LV",
+          "type": "FG"
+        },
+        {
+          "abbr": "MIA",
+          "type": "TD"
+        },
+        {
+          "abbr": "NYJ",
+          "type": "TD"
+        },
+        {
+          "abbr": "NO",
+          "type": "FG"
+        },
+        {
+          "abbr": "PHI",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2025,
+      "week": 8,
+      "slateDate": "2025-10-26",
+      "status": "lost",
+      "games": 7,
+      "voidGames": 0,
+      "totalLegs": 28,
+      "hitLegs": 26,
+      "missedLegs": [
+        {
+          "abbr": "SF",
+          "type": "FG"
+        },
+        {
+          "abbr": "CLE",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2025,
+      "week": 9,
+      "slateDate": "2025-11-02",
+      "status": "lost",
+      "games": 8,
+      "voidGames": 0,
+      "totalLegs": 32,
+      "hitLegs": 31,
+      "missedLegs": [
+        {
+          "abbr": "HOU",
+          "type": "TD"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2025,
+      "week": 10,
+      "slateDate": "2025-11-09",
+      "status": "lost",
+      "games": 7,
+      "voidGames": 0,
+      "totalLegs": 28,
+      "hitLegs": 25,
+      "missedLegs": [
+        {
+          "abbr": "BUF",
+          "type": "FG"
+        },
+        {
+          "abbr": "NE",
+          "type": "FG"
+        },
+        {
+          "abbr": "CAR",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2025,
+      "week": 11,
+      "slateDate": "2025-11-16",
+      "status": "lost",
+      "games": 7,
+      "voidGames": 0,
+      "totalLegs": 28,
+      "hitLegs": 24,
+      "missedLegs": [
+        {
+          "abbr": "LAC",
+          "type": "TD"
+        },
+        {
+          "abbr": "JAX",
+          "type": "FG"
+        },
+        {
+          "abbr": "GB",
+          "type": "FG"
+        },
+        {
+          "abbr": "NYG",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2025,
+      "week": 12,
+      "slateDate": "2025-11-23",
+      "status": "lost",
+      "games": 7,
+      "voidGames": 0,
+      "totalLegs": 28,
+      "hitLegs": 26,
+      "missedLegs": [
+        {
+          "abbr": "PIT",
+          "type": "FG"
+        },
+        {
+          "abbr": "MIN",
+          "type": "TD"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2025,
+      "week": 13,
+      "slateDate": "2025-11-30",
+      "status": "lost",
+      "games": 7,
+      "voidGames": 0,
+      "totalLegs": 28,
+      "hitLegs": 25,
+      "missedLegs": [
+        {
+          "abbr": "CLE",
+          "type": "FG"
+        },
+        {
+          "abbr": "TEN",
+          "type": "TD"
+        },
+        {
+          "abbr": "LAR",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2025,
+      "week": 14,
+      "slateDate": "2025-12-07",
+      "status": "lost",
+      "games": 8,
+      "voidGames": 0,
+      "totalLegs": 32,
+      "hitLegs": 28,
+      "missedLegs": [
+        {
+          "abbr": "WSH",
+          "type": "TD"
+        },
+        {
+          "abbr": "WSH",
+          "type": "FG"
+        },
+        {
+          "abbr": "ATL",
+          "type": "TD"
+        },
+        {
+          "abbr": "CIN",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2025,
+      "week": 15,
+      "slateDate": "2025-12-14",
+      "status": "lost",
+      "games": 8,
+      "voidGames": 0,
+      "totalLegs": 32,
+      "hitLegs": 24,
+      "missedLegs": [
+        {
+          "abbr": "BUF",
+          "type": "FG"
+        },
+        {
+          "abbr": "CIN",
+          "type": "TD"
+        },
+        {
+          "abbr": "CIN",
+          "type": "FG"
+        },
+        {
+          "abbr": "ARI",
+          "type": "FG"
+        },
+        {
+          "abbr": "CLE",
+          "type": "TD"
+        },
+        {
+          "abbr": "NYG",
+          "type": "FG"
+        },
+        {
+          "abbr": "LV",
+          "type": "TD"
+        },
+        {
+          "abbr": "LV",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2025,
+      "week": 16,
+      "slateDate": "2025-12-21",
+      "status": "lost",
+      "games": 7,
+      "voidGames": 0,
+      "totalLegs": 28,
+      "hitLegs": 25,
+      "missedLegs": [
+        {
+          "abbr": "NYJ",
+          "type": "TD"
+        },
+        {
+          "abbr": "KC",
+          "type": "TD"
+        },
+        {
+          "abbr": "MIA",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2025,
+      "week": 17,
+      "slateDate": "2025-12-28",
+      "status": "lost",
+      "games": 7,
+      "voidGames": 0,
+      "totalLegs": 28,
+      "hitLegs": 25,
+      "missedLegs": [
+        {
+          "abbr": "PIT",
+          "type": "TD"
+        },
+        {
+          "abbr": "NE",
+          "type": "FG"
+        },
+        {
+          "abbr": "ARI",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    },
+    {
+      "season": 2025,
+      "week": 18,
+      "slateDate": "2026-01-04",
+      "status": "lost",
+      "games": 6,
+      "voidGames": 0,
+      "totalLegs": 24,
+      "hitLegs": 21,
+      "missedLegs": [
+        {
+          "abbr": "CIN",
+          "type": "FG"
+        },
+        {
+          "abbr": "GB",
+          "type": "TD"
+        },
+        {
+          "abbr": "TEN",
+          "type": "FG"
+        }
+      ],
+      "shortSlate": false
+    }
+  ]
+}

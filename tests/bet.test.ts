@@ -52,8 +52,9 @@ describe('summarizeBet (F4, F5)', () => {
     expect(matchesFilter(lagging, 'final')).toBe(true);
   });
 
-  it('excludes void games from the parlay (R10)', () => {
+  it('marks a slate with a postponed game as NO_BET but keeps tracking the rest (R10)', () => {
     const s = summarizeBet([game({ id: 'v', state: 'void' }), game({ id: 'p', state: 'pre' })]);
+    expect(s.status).toBe('NO_BET');
     expect(s.totalLegs).toBe(4);
     expect(s.needed).toHaveLength(2);
   });

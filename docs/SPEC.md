@@ -1,6 +1,6 @@
 # TDFG Dashboard — Product Spec
 
-**Status:** v1.0 approved for build · **Owner:** Eric Grandmaison · **Last updated:** 2026-09-14
+**Status:** v1.0 shipped · v1.1 (season navigation + bet history, F11–F13) approved for build · **Owner:** Eric Grandmaison · **Last updated:** 2026-09-14
 
 ## 1. Problem
 
@@ -33,7 +33,10 @@ which legs are hit, which are still needed, which are in danger, and whether the
 | R7 | **Total legs** = 2 × number of teams in non-void games. | Derived |
 | R8 | The bet is **WON** as soon as every leg is hit, even if games are still in progress. | Derived |
 | R9 | The bet is **BUSTED** as soon as any game is final, its scoring plays reconcile with the final score, and one of its teams is missing a leg. A final game whose plays haven't caught up yet never busts the bet. | Derived (tightened after QA) |
-| R10 | A game that is **postponed or canceled**, or that ESPN reports as over without being completed, is *void*. Its legs are removed from the total, the way sportsbooks void parlay legs. A game *suspended to resume later* stays in progress. | Assumption, listed in §9 |
+| R10 | A game that is **postponed or canceled**, or that ESPN reports as over without being completed, is *void*. A game *suspended to resume later* stays in progress. **If any 1 PM game in a week is void, that week is "No bet" and doesn't count in the record.** The live board shows "No bet — game postponed" but keeps tracking the remaining legs; the void game's legs are left out of the counter. | Confirmed 2026-09-14 (v1.1) |
+| R11 | **History** covers every regular-season week (1–18) from **2021** through the current season, each graded as if the bet was placed. Playoffs are excluded. | Confirmed (v1.1) |
+| R12 | A **short slate** is a week with fewer than 4 non-void Sunday 1 PM games (e.g. 2022 Week 16, which had 1). It's graded normally and flagged. | Confirmed (v1.1) |
+| R13 | A **near miss** is a lost week missing only 1 or 2 legs. | Confirmed (v1.1) |
 
 ## 4. Features & acceptance criteria
 
@@ -118,6 +121,40 @@ Makes it possible to review and QA mid-game behavior on a non-game day.
 - **AC10.2** Check/✗ marks carry text alternatives ("TD scored", "FG needed"), so status never relies on color alone.
 - **AC10.3** Dark theme by default. Text contrast meets WCAG AA.
 
+### F11 — Tabs: Live | History (P0, v1.1)
+- **AC11.1** A top nav has two tabs: **Live** (`/`, which keeps any week query) and **History** (`/history`). The active tab is marked with `aria-current="page"`.
+- **AC11.2** Switching tabs doesn't reload the page. Browser back and forward move between tabs and weeks.
+- **AC11.3** Deep links to `/history` and to `/?week=N&seasontype=2&year=Y` load directly.
+
+### F12 — Season picker + week strip on the board (P0, v1.1)
+Replaces the ‹ Week › arrows.
+- **AC12.1** A **season select** lists every season from 2021 through the current one, newest first. Choosing a season opens that season's regular-season week with the same week number, capped at its last week. Choosing the current season opens the current week.
+- **AC12.2** A horizontally scrollable **week strip** shows one chip per regular-season week. Each chip is colored by its History status:
+  - won: green ✓
+  - lost: red ✗
+  - near miss: red ✗ with an amber ring
+  - no bet: grey "–"
+  - live: blue pulsing dot
+  - upcoming: faint
+  - Short-slate weeks get a small marker.
+  Each chip has an accessible label, for example "Week 5: lost, 30 of 32 legs".
+- **AC12.3** The selected week's chip is marked with `aria-current` and scrolled into view. Tapping a chip loads that week.
+- **AC12.4** A "Current week" link appears whenever the board is pinned to a specific week through the URL.
+- **AC12.5** If the current ESPN week is in the postseason, the board still works. The strip shows the regular season with no chip selected, and the header names the playoff round.
+- **AC12.6** If history data hasn't loaded or failed, the strip still renders plain chips 1–18 and navigation still works.
+
+### F13 — History page (P0, v1.1)
+All statistics count **graded weeks** only (won or lost). No-bet, live, upcoming and pending weeks are excluded (R10, R11).
+- **AC13.1** **Scope chips:** "All seasons" (default) plus one chip per season, in one row above everything they scope. The headline stats, near misses and bust culprits follow the scope. The charts, season table and week grid always show every season, with the scoped season highlighted and the others muted.
+- **AC13.2** **Headline stats** for the scope: record W–L, win %, average legs hit % (hit ÷ total over graded weeks), near-miss count, and weeks since the last win (graded weeks after the most recent win, across seasons; "no wins yet" if none).
+- **AC13.3** **Trend chart:** wins per season, plus average legs hit % per season, for 2021 → current. The data is also available as text or a table for screen readers. The current season is marked as in progress.
+- **AC13.4** **Season records table:** season, record, win %, avg legs hit, near misses, and weeks won (linked). Newest first. The current season is labelled "in progress".
+- **AC13.5** **Week-by-week grid:** one row per season, one cell per week, using the same status styling as AC12.2. Each cell links to that week's board. Wide rows scroll horizontally on phones without the page itself scrolling sideways.
+- **AC13.6** **Near misses:** lost weeks missing 1–2 legs, newest first. Each shows season and week, "1 leg short" or "2 legs short", the missed legs (e.g. "CLE FG"), and a link to the board.
+- **AC13.7** **Bust culprits:** teams ranked by missed legs in lost weeks, with TD and FG misses split out (top 10). There's also an overall share of misses that were TDs vs FGs.
+- **AC13.8** The current season updates as weeks finish. A week becomes won or lost only once every non-void 1 PM game is final and verified; before that it's live or upcoming. If the server couldn't grade every past week in one request, the page shows "Crunching history…" and retries automatically.
+- **AC13.9** Loading, error (with retry) and empty states are all handled. The page works at 360 px.
+
 ## 5. Data contract — `GET /api/slate`
 
 Query params (all optional; anything else is ignored and doesn't affect caching):
@@ -149,17 +186,45 @@ Query params (all optional; anything else is ignored and doesn't affect caching)
 }
 ```
 
+## 5b. Data contract — `GET /api/history` (v1.1)
+
+No query params (any are rejected with 400, which keeps it to a single CDN cache key).
+
+```jsonc
+{
+  "generatedAt": "2026-09-14T22:00:00.000Z",
+  "startSeason": 2021,
+  "currentSeason": 2026,
+  "incomplete": false,          // true = some past weeks not graded yet this request; client retries shortly
+  "seasons": [{                 // newest first
+    "season": 2026,
+    "complete": false,          // every regular-season week graded
+    "weeks": [{
+      "season": 2026, "week": 1,
+      "slateDate": "2026-09-13",                       // null if unknown/upcoming
+      "status": "won" | "lost" | "no_bet" | "no_games" | "live" | "upcoming" | "pending",
+      "games": 8, "voidGames": 0,
+      "totalLegs": 32, "hitLegs": 32,
+      "missedLegs": [{ "abbr": "CLE", "type": "FG" }], // legs not hit (final weeks)
+      "shortSlate": false
+    }]
+  }]
+}
+```
+
+`BetStatus` (the live board) gains `NO_BET` (R10).
+
 ## 6. Success criteria
 - On a real Sunday, the page's leg states match the final box scores for 100% of legs.
 - There are zero paid API costs, and usage stays inside Netlify free-tier limits.
 - The friend group can answer "what do we still need?" in under 3 seconds on a phone.
 
 ## 7. Out of scope / future ideas
-Push/SMS alerts when a leg hits or goes into danger · configurable bet rules (e.g. TD-only) · historical win/loss record · 4 PM window mode.
+Push/SMS alerts when a leg hits or goes into danger · configurable bet rules (e.g. TD-only) · marking weeks actually bet · playoff history · 4 PM window mode.
 
 ## 8. Glossary
 **Leg** — one team + one scoring type. **Off the board** — a leg (or game) whose requirements are all satisfied. **Slate** — the set of games in the window.
 
 ## 9. Assumptions to confirm with Eric
-1. Void games (R10) are dropped from the parlay rather than busting it.
+1. ~~Void games are dropped from the parlay~~ → **Resolved (v1.1):** a void game makes the week "No bet" (R10).
 2. A game suspended mid-play and resumed later stays "in progress" until ESPN marks it final. A game ESPN ends without completing is void.
