@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.netlify/
+coverage/
+playwright-report/
+test-results/
+fixtures/live-mnf/raw/
+.DS_Store
+*.log
+.claude/
+deno.lock
