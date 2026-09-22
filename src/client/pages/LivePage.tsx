@@ -1,7 +1,9 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { FILTERS, matchesFilter, sortGames, summarizeBet, type FilterKey, type SortMode } from '../../shared/bet';
 import type { HistoryResponse } from '../../shared/history';
+import { AttentionStrip } from '../components/AttentionStrip';
 import { Controls, DemoControls } from '../components/Controls';
+import { OddsPanel } from '../components/OddsPanel';
 import { GameCard, LegIcon } from '../components/GameCard';
 import { SeasonWeekPicker } from '../components/SeasonWeekPicker';
 import { BetSummaryPanel, NeededList, UpdatedAgo } from '../components/Summary';
@@ -119,8 +121,19 @@ export function LivePage({ search, history, navigate }: { search: string; histor
 
         {hasLegs && (
           <>
+            <AttentionStrip games={games} />
             <div className="top-grid">
-              <BetSummaryPanel summary={summary} />
+              <div className="stack">
+                <BetSummaryPanel summary={summary} />
+                {data && !query.demo && (
+                  <OddsPanel
+                    key={`${data.season}-${data.seasonType}-${data.week}`}
+                    slate={data}
+                    summary={summary}
+                    seasons={history?.seasons ?? []}
+                  />
+                )}
+              </div>
               <NeededList summary={summary} />
             </div>
             <Controls filter={filter} onFilter={chooseFilter} sort={sort} onSort={setSort} counts={counts} />

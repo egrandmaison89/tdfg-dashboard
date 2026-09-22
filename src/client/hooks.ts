@@ -8,6 +8,7 @@ import { apiUrl, isSlateResponse, type SlateQuery } from './query';
 export interface SlateState {
   data: SlateResponse | null;
   error: string | null;
+  reload: () => void;
   /**
    * Client-clock timestamp of when the data was generated on the server. Derived from the response
    * `Date` header minus `generatedAt`, so CDN cache age is included and client clock skew is not.
@@ -30,7 +31,8 @@ function dataAgeAtReceipt(res: Response, slate: SlateResponse): number {
  * Pauses while the tab is hidden, refreshes on return, and never discards good data on errors (AC2.4).
  */
 export function useSlate(query: SlateQuery): SlateState {
-  const [state, setState] = useState<SlateState>({ data: null, error: null, dataAsOf: null, loading: true });
+  const [state, setState] = useState<Omit<SlateState, 'reload'>>({ data: null, error: null, dataAsOf: null, loading: true });
+  const [attempt, setAttempt] = useState(0);
   const url = apiUrl(query);
   const { demo } = query;
 
@@ -90,9 +92,10 @@ export function useSlate(query: SlateQuery): SlateState {
       controller?.abort();
       document.removeEventListener('visibilitychange', onVisibility);
     };
-  }, [url, demo]);
+  }, [url, demo, attempt]);
 
-  return state;
+  const reload = useCallback(() => setAttempt((n) => n + 1), []);
+  return { ...state, reload };
 }
 
 /** String state persisted to localStorage; degrades to plain state if storage is unavailable (AC7.3). */

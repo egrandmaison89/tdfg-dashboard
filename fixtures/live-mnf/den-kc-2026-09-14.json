@@ -1,5 +1,5 @@
 {
- "note": "Real ESPN data recorded during MNF DEN @ KC (2026-09-14), keyed by ET capture time HHMM; trimmed to fields the app reads.",
+ "note": "Real ESPN data recorded during MNF DEN @ KC (2026-09-14), keyed by ET capture time HHMM; trimmed to fields the app reads (including down/distance/yardLine/timeouts).",
  "eventId": "401872931",
  "scoreboardEvents": {
   "2022": {
@@ -105,6 +105,8 @@
       "shortDownDistanceText": "2nd & 10",
       "possessionText": "DEN 35",
       "isRedZone": false,
+      "homeTimeouts": 3,
+      "awayTimeouts": 3,
       "possession": "12"
      },
      "status": {
@@ -249,6 +251,8 @@
       "shortDownDistanceText": "1st & 10",
       "possessionText": "DEN 32",
       "isRedZone": false,
+      "homeTimeouts": 3,
+      "awayTimeouts": 3,
       "possession": "7"
      },
      "status": {
@@ -389,7 +393,9 @@
       "down": -1,
       "yardLine": 15,
       "distance": 0,
-      "isRedZone": true
+      "isRedZone": true,
+      "homeTimeouts": 3,
+      "awayTimeouts": 3
      },
      "status": {
       "clock": 228.0,
@@ -533,6 +539,8 @@
       "shortDownDistanceText": "2nd & 10",
       "possessionText": "DEN 8",
       "isRedZone": false,
+      "homeTimeouts": 3,
+      "awayTimeouts": 3,
       "possession": "7"
      },
      "status": {
@@ -677,6 +685,8 @@
       "shortDownDistanceText": "1st & 10",
       "possessionText": "KC 29",
       "isRedZone": false,
+      "homeTimeouts": 3,
+      "awayTimeouts": 3,
       "possession": "12"
      },
      "status": {
@@ -821,6 +831,8 @@
       "shortDownDistanceText": "3rd & 4",
       "possessionText": "DEN 18",
       "isRedZone": false,
+      "homeTimeouts": 3,
+      "awayTimeouts": 3,
       "possession": "7"
      },
      "status": {
@@ -965,6 +977,8 @@
       "shortDownDistanceText": "4th & 13",
       "possessionText": "KC 33",
       "isRedZone": false,
+      "homeTimeouts": 3,
+      "awayTimeouts": 3,
       "possession": "12"
      },
      "status": {
@@ -1109,6 +1123,8 @@
       "shortDownDistanceText": "2nd & 6",
       "possessionText": "DEN 37",
       "isRedZone": false,
+      "homeTimeouts": 3,
+      "awayTimeouts": 3,
       "possession": "12"
      },
      "status": {
@@ -1249,7 +1265,9 @@
       "down": -1,
       "yardLine": 85,
       "distance": 0,
-      "isRedZone": true
+      "isRedZone": true,
+      "homeTimeouts": 3,
+      "awayTimeouts": 1
      },
      "status": {
       "clock": 99.0,

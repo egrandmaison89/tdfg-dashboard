@@ -1,10 +1,10 @@
 import type { Config } from '@netlify/functions';
 import { createCache } from '../../src/server/cache';
-import { handleSlateRequest } from '../../src/server/handler';
+import { handleOddsRequest } from '../../src/server/handler';
 
 export default async (req: Request): Promise<Response> =>
-  handleSlateRequest(req, { cache: createCache(), oddsEditable: Boolean(process.env.TDFG_ODDS_KEY) });
+  handleOddsRequest(req, { cache: createCache(), passphrase: process.env.TDFG_ODDS_KEY });
 
 export const config: Config = {
-  path: '/api/slate',
+  path: '/api/odds',
 };

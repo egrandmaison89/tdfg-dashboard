@@ -24,6 +24,11 @@ export interface EspnEvent {
   possessionTeamId: string | null;
   isRedZone: boolean;
   downDistance: string | null;
+  down: number | null;
+  distance: number | null;
+  yardLine: number | null;
+  homeTimeouts: number | null;
+  awayTimeouts: number | null;
   /** [away, home] */
   teams: [EspnTeam, EspnTeam];
 }
@@ -89,6 +94,13 @@ export function parseEvent(raw: unknown): EspnEvent | null {
         : 'pre';
   const period = num(status.period);
   const situation = state === 'in' ? obj(comp.situation) : {};
+  /** Numbers ESPN omits between drives; 0 downs mean "no snap yet", not 1st down. */
+  const situationNum = (key: string, min = 0): number | null => {
+    const value = situation[key];
+    if (value === undefined || value === null || value === '') return null;
+    const n = num(value, NaN);
+    return Number.isFinite(n) && n >= min ? n : null;
+  };
 
   return {
     id,
@@ -101,6 +113,11 @@ export function parseEvent(raw: unknown): EspnEvent | null {
     possessionTeamId: str(situation.possession) || null,
     isRedZone: situation.isRedZone === true,
     downDistance: str(situation.downDistanceText) || str(situation.shortDownDistanceText) || null,
+    down: situationNum('down', 1),
+    distance: situationNum('distance'),
+    yardLine: situationNum('yardLine'),
+    homeTimeouts: situationNum('homeTimeouts'),
+    awayTimeouts: situationNum('awayTimeouts'),
     teams: [away, home],
   };
 }

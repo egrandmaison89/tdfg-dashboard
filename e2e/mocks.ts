@@ -64,6 +64,11 @@ export function finalGame(id: string, over: Record<string, unknown> = {}) {
     possessionTeamId: null,
     isRedZone: false,
     downDistance: null,
+    down: null,
+    distance: null,
+    yardLine: null,
+    homeTimeouts: null,
+    awayTimeouts: null,
     legsVerified: true,
     teams: [
       { id: `${id}a`, abbr: 'AWY', name: 'Away', logo: null, color: null, homeAway: 'away', score: 10, tdCount: 1, fgCount: 1 },
@@ -73,8 +78,31 @@ export function finalGame(id: string, over: Record<string, unknown> = {}) {
   };
 }
 
+/** A live game: home team (HOM) has the ball needing a field goal, in range, late. */
+export function liveGame(id: string, over: Record<string, unknown> = {}) {
+  return finalGame(id, {
+    state: 'in',
+    statusDetail: 'Q4 3:12',
+    period: 4,
+    clockSeconds: 192,
+    possessionTeamId: `${id}h`,
+    isRedZone: false,
+    downDistance: '2nd & 6 at AWY 30',
+    down: 2,
+    distance: 6,
+    yardLine: 70,
+    homeTimeouts: 2,
+    awayTimeouts: 1,
+    teams: [
+      { id: `${id}a`, abbr: 'AWY', name: 'Away', logo: null, color: null, homeAway: 'away', score: 17, tdCount: 2, fgCount: 1 },
+      { id: `${id}h`, abbr: 'HOM', name: 'Home', logo: null, color: null, homeAway: 'home', score: 14, tdCount: 2, fgCount: 0 },
+    ],
+    ...over,
+  });
+}
+
 /** A slate echoing whatever week/year was requested (current = 2026 week 2). */
-export function slateFor(url: URL, games: unknown[] = [finalGame('g1')]) {
+export function slateFor(url: URL, games: unknown[] = [finalGame('g1')], extra: Record<string, unknown> = {}) {
   return {
     generatedAt: new Date().toISOString(),
     source: 'espn',
@@ -84,10 +112,31 @@ export function slateFor(url: URL, games: unknown[] = [finalGame('g1')]) {
     week: Number(url.searchParams.get('week') ?? 2),
     slateDate: null,
     games,
+    odds: null,
+    oddsEditable: false,
+    ...extra,
   };
 }
 
-export async function mockApis(page: Page, options: { history?: () => { status: number; body: unknown }; games?: unknown[] } = {}) {
+export async function mockApis(
+  page: Page,
+  options: {
+    history?: () => { status: number; body: unknown };
+    games?: unknown[];
+    slateExtra?: Record<string, unknown>;
+    /** Serves GET /api/odds too, so the panel's own fetch agrees with the slate. */
+    odds?: unknown;
+    oddsEditable?: boolean;
+  } = {},
+) {
+  await page.route('**/api/odds**', async (route) => {
+    if (route.request().method() !== 'GET') return route.fallback();
+    return route.fulfill({
+      status: 200,
+      contentType: 'application/json',
+      body: JSON.stringify({ odds: options.odds ?? null, editable: options.oddsEditable ?? false }),
+    });
+  });
   const history = options.history ?? (() => ({ status: 200, body: mockHistory() }));
   await page.route('**/api/history**', (route) => {
     const { status, body } = history();
@@ -97,7 +146,13 @@ export async function mockApis(page: Page, options: { history?: () => { status: 
     route.fulfill({
       status: 200,
       contentType: 'application/json',
-      body: JSON.stringify(slateFor(new URL(route.request().url()), options.games)),
+      body: JSON.stringify(
+        slateFor(new URL(route.request().url()), options.games, {
+          ...(options.odds === undefined ? {} : { odds: options.odds }),
+          ...(options.oddsEditable === undefined ? {} : { oddsEditable: options.oddsEditable }),
+          ...options.slateExtra,
+        }),
+      ),
     }),
   );
 }

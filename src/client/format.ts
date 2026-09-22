@@ -49,5 +49,6 @@ export const RISK_LABEL: Record<RiskLevel, string> = {
   ok: 'On track',
   watch: 'Watch',
   danger: 'In danger',
+  last_chance: 'Critical',
   busted: 'Busted',
 };

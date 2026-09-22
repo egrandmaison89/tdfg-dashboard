@@ -1,6 +1,6 @@
 # TDFG Dashboard — Product Spec
 
-**Status:** v1.0 shipped · v1.1 (season navigation + bet history, F11–F13) approved for build · **Owner:** Eric Grandmaison · **Last updated:** 2026-09-14
+**Status:** v1.0 + v1.1 shipped · v1.2 (attention, drive strip, odds, F14–F17) approved for build · **Owner:** Eric Grandmaison · **Last updated:** 2026-09-22
 
 ## 1. Problem
 
@@ -37,6 +37,9 @@ which legs are hit, which are still needed, which are in danger, and whether the
 | R11 | **History** covers every regular-season week (1–18) from **2021** through the current season, each graded as if the bet was placed. Playoffs are excluded. | Confirmed (v1.1) |
 | R12 | A **short slate** is a week with fewer than 4 non-void Sunday 1 PM games (e.g. 2022 Week 16, which had 1). It's graded normally and flagged. | Confirmed (v1.1) |
 | R13 | A **near miss** is a lost week missing only 1 or 2 legs. | Confirmed (v1.1) |
+| R14 | **Field-goal range** is the ball inside the opponent's 38 (a ~55-yard attempt). 38–45 out is "long range". | Assumption (v1.2) |
+| R15 | ESPN's `situation.yardLine` is absolute, measured from the **home** team's goal line (verified against recorded live data). Yards to the opponent's end zone = `100 − yardLine` for the home team, `yardLine` for the away team. | Verified (v1.2) |
+| R16 | The **payout** shown is whatever odds and stake were entered for that week. We can't read DraftKings automatically (they block it), so the entered price is the source of truth and anything we compute is labelled an estimate. | Confirmed (v1.2) |
 
 ## 4. Features & acceptance criteria
 
@@ -155,6 +158,44 @@ All statistics count **graded weeks** only (won or lost). No-bet, live, upcoming
 - **AC13.8** The current season updates as weeks finish. A week becomes won or lost only once every non-void 1 PM game is final and verified; before that it's live or upcoming. If the server couldn't grade every past week in one request, the page shows "Crunching history…" and retries automatically.
 - **AC13.9** Loading, error (with retry) and empty states are all handled. The page works at 360 px.
 
+### F14 — Attention & smarter trouble logic (P0, v1.2)
+Replaces the clock-only heuristic in F6. Each pending team gets an **assessment**: a level, an `opportunity` flag, and plain-language reasons.
+
+Inputs: missing legs, regulation time remaining, possession, field position, down & distance, timeouts, OT.
+
+| Level | Meaning |
+|-------|---------|
+| `busted` | Game final and verified with a leg missing |
+| `last_chance` | Overtime, or under 2:00 left, with a leg missing; also any escalation past `danger`. Shown as **Critical**, since an escalated case can happen with more time on the clock. |
+| `danger` / `watch` / `ok` | As in F6, then adjusted by the rules below |
+| `pregame` / `done` / `void` | Unchanged |
+
+- **AC14.1** Escalate one level when, with ≤ 8:00 left and a leg missing, the team **doesn't have the ball**; escalate again if it also has **no timeouts**. Unknown possession is never read as "the other team has it".
+- **AC14.2** Never escalate for lacking the ball when the team's only missing leg can still come from its defense or special teams — i.e. TD legs — but do flag a missing **FG** leg without the ball as the more urgent case, since only the offense can kick.
+- **AC14.3** A team **with the ball, in scoring position for what it needs** is marked `opportunity` (in FG range needing a FG, or inside the 25 needing a TD). Opportunity never lowers the level; it adds a "chance right now" cue.
+- **AC14.4** Every assessment carries at least one reason. The first is always the clock context ("4th quarter · 3:12 left", "halftime", "overtime", "final 1:45"), followed by any adjustments ("doesn't have the ball", "no timeouts left", "in field-goal range"). Range wording follows what's still needed: a TD-only leg reads "in scoring position", never "field-goal range".
+- **AC14.5** A pinned **Needs attention** strip lists every team at `danger` or `last_chance`, plus anything flagged `opportunity`, with a live count. It appears above the game cards whenever it isn't empty, and it never appears when nothing needs attention.
+- **AC14.6** Thresholds and yard lines stay named constants in one module.
+
+### F15 — Drive strip (P0, v1.2)
+A compact field graphic on each **live** game card.
+- **AC15.1** Shows a field bar with both end zones labelled, the ball's spot, red-zone shading (inside the 20) and FG-range shading (inside the 38), oriented so the possessing team attacks to the right.
+- **AC15.2** Shows down & distance from ESPN, and the ball's spot in words, e.g. "3rd & 4 at CAR 22".
+- **AC15.3** Shows a one-line **"what we want"** for the current possession, driven by what each team still needs (R2/R3). For example: possessing team needs a TD only → "Needs 6 — a field goal here doesn't help"; needs a FG only and inside the 38 → "Needs a made FG — in range now"; needs both → "Any score helps"; already done → what we want for the other team.
+- **AC15.4** When ESPN reports no possession (between a score and the next kickoff) the strip shows the state without a ball marker; at halftime there is no live drive, even if the feed still names a possessing team. Missing fields never break the card.
+- **AC15.5** The strip is readable at 360 px and doesn't push the score or leg checks out of view. It carries a text equivalent for screen readers.
+
+### F16 — Payout & odds (P1, v1.2)
+- **AC16.1** Anyone with the link can see the week's **odds and stake** once set: "DraftKings +2500 · $20 → pays $520". The values are stored per week on the server and read through their own short-lived endpoint (`GET /api/odds`, 15 s shared cache), so a long-cached slate can never pin a stale price. A failed write reports an error rather than a false "saved".
+- **AC16.2** Setting the odds requires a passphrase (server-side env var). With no passphrase configured, the endpoint is read-only and the UI hides the editor.
+- **AC16.3** American odds are accepted as `+2500`/`-110` (integers, |value| ≥ 100), stake ≥ 0. Payout = stake × (odds/100 for positive, 100/|odds| for negative), profit and total return both shown.
+- **AC16.4** An **estimate** is always shown, labelled as such: the fair price for this slate from 5 seasons of leg hit rates. Correlation between legs is folded into the *exponent* (an effective number of independent teams) so the model's average week matches the observed win rate while staying ≤ a single team's own hit rate at any slate size.
+- **AC16.5** The panel also shows live progress: legs still needed, and — before kickoff — the estimated chance. Nothing implies we know DraftKings' real price.
+- **AC16.6** Odds entry is a same-week concern: the value is keyed by season/type/week, so past weeks keep their own price.
+
+### F17 — Remove the Netlify badge (P2, v1.2)
+- **AC17.1** The "Powered by Netlify" badge no longer appears on the production site (project setting, Free plan default since 2026-08-19).
+
 ## 5. Data contract — `GET /api/slate`
 
 Query params (all optional; anything else is ignored and doesn't affect caching):
@@ -177,6 +218,8 @@ Query params (all optional; anything else is ignored and doesn't affect caching)
     "statusDetail": "Q3 4:12",
     "period": 3, "clockSeconds": 252, "isHalftime": false,
     "possessionTeamId": "29" | null, "isRedZone": false, "downDistance": "3rd & 4 at CHI 22" | null,
+    "down": 3 | null, "distance": 4 | null, "yardLine": 22 | null,   // yardLine is absolute from the home goal (R15)
+    "homeTimeouts": 2 | null, "awayTimeouts": 3 | null,
     "legsVerified": true,
     "teams": [ // [away, home]
       { "id": "3", "abbr": "CHI", "name": "Chicago Bears", "logo": "https://…", "color": "#0b1c3a",
@@ -213,6 +256,21 @@ No query params (any are rejected with 400, which keeps it to a single CDN cache
 ```
 
 `BetStatus` (the live board) gains `NO_BET` (R10).
+
+The slate also carries the week's odds when set (F16):
+
+```jsonc
+"odds": { "american": 2500, "stake": 20, "note": "DK same-game parlay", "updatedAt": "2026-09-21T16:02:00.000Z" } | null,
+"oddsEditable": true   // a passphrase is configured server-side
+```
+
+## 5c. Data contract — `POST /api/odds` (v1.2)
+
+**POST** body: `{ season, seasonType, week, american, stake, note?, key }`. Returns `200 { odds }`, `400` on invalid values,
+`401` on a bad passphrase (constant-time compare; `429` after 8 wrong attempts a minute from one client),
+`503` when no passphrase is configured or the store can't confirm the write.
+
+**GET** `?season=&seasontype=&week=` returns `200 { odds, editable }`, cached 15 s at the CDN.
 
 ## 6. Success criteria
 - On a real Sunday, the page's leg states match the final box scores for 100% of legs.

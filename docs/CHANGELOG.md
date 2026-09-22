@@ -1,5 +1,67 @@
 # Changelog & build log
 
+## 1.2.0 — 2026-09-22 — Attention, drive strip, payout
+
+### Requirements interview (with Eric)
+| Question | Decision |
+|----------|----------|
+| Odds | DraftKings blocks automated access, so: enter the real price (shared with everyone) **and** show our own estimate |
+| Alerts | Louder on screen only — no browser notifications or sound |
+| Drive graphic | Compact field strip inside each live card |
+| Trouble logic | Weigh possession, field position and timeouts; add a "last chance" level with plain-language reasons |
+
+### Research before build
+- DraftKings' public endpoints return **403 Access Denied** to servers, and a browser fetch would be blocked by CORS. ESPN does carry DraftKings' game lines (moneyline/spread/total) but not per-team TD/FG props, so the entered price is the source of truth.
+- ESPN's live `situation` carries `down`, `distance`, `yardLine`, `downDistanceText`, `possession`, `isRedZone` and per-side timeouts.
+- Verified against the recorded Monday-night game that `yardLine` is absolute from the **home** goal line (R15).
+- The "Powered by Netlify" badge is a project setting with no API or CLI; it has to be switched off in the Netlify UI (F17).
+
+### Added
+- **Smarter trouble logic (F14):** possession, field position and timeouts adjust the clock-based level; new `last_chance` level; `opportunity` flag for a team in scoring position for the leg it needs; every assessment carries reasons ("doesn't have the ball", "no timeouts left", "in field-goal range"). A pinned **Needs attention** strip lists danger, last chance and live chances with a count.
+- **Drive strip (F15):** per-live-game field bar with ball spot, red-zone and FG-range shading, down & distance, and a one-line "what we want here" that changes with what each team still needs.
+- **Payout (F16):** `POST /api/odds` stores the week's price behind a passphrase (`TDFG_ODDS_KEY`); the slate carries it so everyone on the link sees the same number. The panel shows price, profit, stake, return, and our own calibrated estimate from 5 seasons of leg rates.
+- ESPN parsing extended for down/distance/yard line/timeouts, with demo mode generating a plausible drive so the strip is reviewable off-season.
+
+### Fixed
+- Unknown possession was being read as "the other team has the ball", which over-escalated urgency (caught by a failing test).
+- The "no timeouts" escalation could never fire, because its 5:00 window sat entirely inside the danger threshold; widened to 8:00.
+- A CSS class collision (`.ball`) leaked absolute positioning onto the team-row possession marker, floating a stray football at the page edge (caught in visual review).
+- A busted week with nothing pending read "Nothing left to hit."; it now says how many legs short.
+
+### QA round (independent reviewer): findings and resolutions
+All five gates were green when the reviewer started, so every finding below is something the suite missed.
+
+| ID | Sev | Finding | Resolution |
+|----|-----|---------|------------|
+| F-01 | P1 | `POST /api/odds` always returned 200: the cache swallows write failures, so a lost write looked saved | Cache gained `strict`/`timeoutMs` options; odds writes throw on failure (→ 503) and get a 6 s timeout, reads 4 s. Test asserts a failed write reports 503. |
+| F-02 | P1 | Odds rode along on the CDN-cached slate (up to 24 h), so a saved price could stay invisible — or revert for the person who saved it | Odds now have their own `GET /api/odds` endpoint with a 15 s shared cache; the panel reads from it and shows the saved value immediately. |
+| F-03 | P1 | "Chance now" replaced the risk badge, so a team in danger rendered calm green | The level badge always shows; the chance is an extra badge, and the green styling is an accent that no longer overrides red. |
+| F-04 | P1 | `.needed-item.risk-last_chance` had no CSS, so the most urgent row looked the calmest | Styled with the danger treatment plus a ring. |
+| F-05 | P1 | `BADGE_RISKS` never learned the new level, so the worst games showed no badge | Added. |
+| F-06 | P1 | `reasons` could come back empty, suppressing the "why" line | Reasons always lead with clock context ("4th quarter · 3:12 left", "halftime", "final 1:45"). Test sweeps every quarter/clock combination. |
+| F-07 | P1 | Multiplicative calibration priced a 1-game slate at 73.6% — above a single team's own 76% hit rate, and clippable to p=1 | Calibration moved into the exponent (effective independent teams). A 1-game week now prices at 60.7%, always ≤ one team's rate, monotone in slate size. |
+| F-08 | P1 | Open POST with no throttle and a non-constant-time passphrase compare | Constant-time compare, 8 wrong attempts per client per minute → 429, failures logged. |
+| F-09 | P2 | "FG range" shown for a team that only needs a TD, directly above "a field goal here doesn't help" | Range wording and the chip follow what's still needed; TD-only reads "in scoring position". |
+| F-10 | P2 | Possession left over at halftime produced a live drive and a "chance now" | Halftime is treated as no possession in both the assessment and the drive strip. |
+| F-11 | P2 | Opportunity outranked severity in the strip; "pinned" wasn't sticky; no length cap | Sorted worst-first, `position: sticky`, capped at 6 rows with "+N more". |
+| F-12 | P2 | "Last chance" overstated an escalated case with 7:30 left | Level renamed in the UI to **Critical**. |
+| F-13 | P2 | A decided week still read "5 legs still needed" and showed a live chance | "5 legs short" when busted; the estimate is labelled pre-kickoff and drops the chance once settled. |
+| F-14 | P2 | A postponed (no-bet) week still said "Pays $550" | Adds "No bet this week — a game was postponed". |
+| F-15 | P2 | `stake` coerced `null`/`[]`/`true` into numbers | Type-checked like `american`; tests cover each. |
+| F-16 | P2 | Rapid clicks fired concurrent POSTs | Guard at the top of submit. Two-writer last-write-wins is accepted and documented. |
+| F-17 | P2 | Editor dropped focus, ignored Escape, error not tied to fields | Focus moves to the first field and back to the trigger, Escape closes, `aria-invalid`/`aria-describedby` wired. |
+| F-18 | P2 | `needsAttention` and `isLongFgRange` were dead code, and the test plan credited the unused one | `attentionItems` (what the UI uses) moved to `src/shared/attention.ts` and tested there; long range now renders its own chip. |
+| F-19 | P2 | Unicode minus broke copy-paste of negative odds | ASCII. |
+| F-20 | P2 | `package.json` still on 1.1.0 | Bumped to 1.2.0. |
+| AC14.1 caveat | — | The recorded fixture predated v1.2 and lacked timeout fields, so escalation was unverified against real data | Fixture re-trimmed from the raw capture; a test asserts down, distance, yard line and timeouts parse from all 9 real captures. |
+
+### Verification
+- Lint ✓, typecheck ✓, build ✓.
+- Vitest: **432 tests** (88 new for v1.2).
+- Playwright: **43 tests** (15 new for v1.2).
+- Live check against the dev server: odds POST accepted, wrong passphrase 401, invalid odds 400, GET returns the stored price, slate carries it.
+- Real-data check: all 9 Monday-night captures parse down/distance/yard line/timeouts, and yards-to-goal matches `downDistanceText` in both directions.
+
 ## 1.1.0 — 2026-09-14 — Season navigation & bet history
 
 ### Requirements interview (with Eric)

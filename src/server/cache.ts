@@ -2,9 +2,16 @@
 
 import { getStore } from '@netlify/blobs';
 
+export interface CacheOptions {
+  /** Override the default per-call timeout (durable data deserves a longer wait). */
+  timeoutMs?: number;
+  /** Throw instead of swallowing failures — for data we must not silently lose (F16 odds). */
+  strict?: boolean;
+}
+
 export interface KeyValueCache {
-  get<T>(key: string): Promise<T | null>;
-  set(key: string, value: unknown): Promise<void>;
+  get<T>(key: string, options?: CacheOptions): Promise<T | null>;
+  set(key: string, value: unknown, options?: CacheOptions): Promise<void>;
 }
 
 type Logger = (message: string, err?: unknown) => void;
@@ -12,12 +19,12 @@ type Logger = (message: string, err?: unknown) => void;
 export class MemoryCache implements KeyValueCache {
   private readonly entries = new Map<string, string>();
 
-  async get<T>(key: string): Promise<T | null> {
+  async get<T>(key: string, _options?: CacheOptions): Promise<T | null> {
     const raw = this.entries.get(key);
     return raw === undefined ? null : (JSON.parse(raw) as T);
   }
 
-  async set(key: string, value: unknown): Promise<void> {
+  async set(key: string, value: unknown, _options?: CacheOptions): Promise<void> {
     this.entries.set(key, JSON.stringify(value));
   }
 }
@@ -49,20 +56,24 @@ export class BlobsCache implements KeyValueCache {
     private readonly timeoutMs = BLOBS_TIMEOUT_MS,
   ) {}
 
-  async get<T>(key: string): Promise<T | null> {
+  async get<T>(key: string, options: CacheOptions = {}): Promise<T | null> {
+    const timeout = options.timeoutMs ?? this.timeoutMs;
     try {
-      return ((await withTimeout(this.store.get(key, { type: 'json' }), this.timeoutMs, `blobs get ${key}`)) as T | null) ?? null;
+      return ((await withTimeout(this.store.get(key, { type: 'json' }), timeout, `blobs get ${key}`)) as T | null) ?? null;
     } catch (err) {
       this.log(`blobs get failed for ${key}`, err);
+      if (options.strict) throw err;
       return null;
     }
   }
 
-  async set(key: string, value: unknown): Promise<void> {
+  async set(key: string, value: unknown, options: CacheOptions = {}): Promise<void> {
+    const timeout = options.timeoutMs ?? this.timeoutMs;
     try {
-      await withTimeout(this.store.setJSON(key, value), this.timeoutMs, `blobs set ${key}`);
+      await withTimeout(this.store.setJSON(key, value), timeout, `blobs set ${key}`);
     } catch (err) {
       this.log(`blobs set failed for ${key}`, err);
+      if (options.strict) throw err;
     }
   }
 }

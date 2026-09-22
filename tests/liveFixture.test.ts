@@ -7,6 +7,7 @@ import { describe, expect, it } from 'vitest';
 import live from '../fixtures/live-mnf/den-kc-2026-09-14.json';
 import { parseEvent } from '../src/shared/espn';
 import { parseScoringPlays, playsMatchScore, tallyLegs } from '../src/shared/legs';
+import { yardsToGoal } from '../src/shared/risk';
 
 const recording = live as unknown as {
   scoreboardEvents: Record<string, unknown>;
@@ -34,6 +35,27 @@ describe('live ESPN data (recorded MNF DEN @ KC)', () => {
       ['KC', 'home', 0],
     ]);
     expect(eventAt('2116')).toMatchObject({ statusDetail: 'Q2 6:34', possessionTeamId: '12', downDistance: '4th & 13 at KC 33' });
+  });
+
+  it('reads down, distance, yard line and timeouts from the real feed (AC14.1, R15)', () => {
+    // 21:16 capture: KC (home, id 12) 4th & 13 at their own 33, both sides with timeouts.
+    expect(eventAt('2116')).toMatchObject({ down: 4, distance: 13, yardLine: 33, homeTimeouts: 3, awayTimeouts: 3 });
+    // 21:34: DEN burned two timeouts before the half.
+    expect(eventAt('2134')).toMatchObject({ homeTimeouts: 3, awayTimeouts: 1 });
+    // Every live capture carries the fields the escalation logic depends on.
+    for (const hhmm of Object.keys(recording.scoreboardEvents)) {
+      const event = eventAt(hhmm);
+      expect(typeof event.homeTimeouts, `capture ${hhmm}`).toBe('number');
+      expect(typeof event.awayTimeouts, `capture ${hhmm}`).toBe('number');
+      expect(event.yardLine, `capture ${hhmm}`).not.toBeNull();
+    }
+  });
+
+  it('agrees with the yards-to-goal math in both directions (R15)', () => {
+    const kcDriving = eventAt('2022'); // KC (home) has the ball at "DEN 35" → yardLine 65
+    expect(yardsToGoal(kcDriving, kcDriving.teams[1])).toBe(35);
+    const denDriving = eventAt('2049'); // DEN (away) at "DEN 8" → yardLine 92
+    expect(yardsToGoal(denDriving, denDriving.teams[0])).toBe(92);
   });
 
   it('handles ESPN flagging the red zone with no possession (right after a score)', () => {

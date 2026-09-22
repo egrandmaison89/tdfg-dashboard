@@ -78,9 +78,32 @@ function rewindEvent(rawEvent: unknown, progress: number): unknown {
   }
 
   if (progress > 0 && upcoming) {
+    // A plausible drive toward the next score, so the drive strip has something real-shaped to draw.
+    const secondsToScore = playElapsed(upcoming) - elapsed;
+    const isRedZone = secondsToScore <= RED_ZONE_WINDOW_SECONDS;
+    const possessionId = str(obj(obj(upcoming).team).id);
+    const home = arr(comp.competitors)
+      .map(obj)
+      .find((c) => c.homeAway === 'home');
+    const possessionIsHome = str(obj(home?.team).id) === possessionId;
+    const yardsToGoal = Math.max(2, Math.min(95, Math.round(secondsToScore / 8) + 5));
+    const yardLine = possessionIsHome ? 100 - yardsToGoal : yardsToGoal;
+    const abbrOf = (side: 'home' | 'away') =>
+      str(obj(obj(arr(comp.competitors).map(obj).find((c) => c.homeAway === side)).team).abbreviation, side === 'home' ? 'HOME' : 'AWAY');
+    const possessionAbbr = possessionIsHome ? abbrOf('home') : abbrOf('away');
+    const defendingAbbr = possessionIsHome ? abbrOf('away') : abbrOf('home');
+    // Own half when more than 50 to go, otherwise the defence's half.
+    const spotAbbr = yardsToGoal > 50 ? possessionAbbr : defendingAbbr;
+    const spotYard = yardsToGoal > 50 ? 100 - yardsToGoal : yardsToGoal;
     comp.situation = {
-      possession: str(obj(obj(upcoming).team).id),
-      isRedZone: playElapsed(upcoming) - elapsed <= RED_ZONE_WINDOW_SECONDS,
+      possession: possessionId,
+      isRedZone,
+      down: (Math.floor(elapsed / 37) % 4) + 1,
+      distance: isRedZone ? 4 : 10,
+      yardLine,
+      downDistanceText: `${['1st', '2nd', '3rd', '4th'][Math.floor(elapsed / 37) % 4]} & ${isRedZone ? 4 : 10} at ${spotAbbr} ${spotYard}`,
+      homeTimeouts: 3,
+      awayTimeouts: 2,
     };
   } else {
     delete comp.situation;

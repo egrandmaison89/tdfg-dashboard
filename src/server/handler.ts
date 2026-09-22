@@ -1,6 +1,7 @@
 /** HTTP layer for GET /api/slate: params, source selection, headers, errors. */
 
 import type { SeasonHistory } from '../shared/history';
+import { parseOddsRequest, readOdds, writeOdds } from './odds';
 import { buildHistory } from './buildHistory';
 import { buildSlate } from './buildSlate';
 import { MemoryCache, type KeyValueCache } from './cache';
@@ -10,6 +11,8 @@ import { EspnSource, type SlateParams } from './source';
 
 export interface HandlerDeps {
   cache: KeyValueCache;
+  /** A passphrase is configured, so the UI may offer the odds editor (F16). */
+  oddsEditable?: boolean;
   fetchImpl?: typeof fetch;
   now?: () => Date;
   log?: (message: string, err?: unknown) => void;
@@ -83,12 +86,106 @@ export async function handleSlateRequest(req: Request, deps: HandlerDeps): Promi
   const cache = query.demo ? new MemoryCache() : deps.cache;
 
   try {
-    const slate = await buildSlate(query.params, { source, cache, now, log });
+    const slate = await buildSlate(query.params, { source, cache, now, log, oddsEditable: deps.oddsEditable === true });
     const ttl = cdnTtlSeconds(slate, now().getTime(), { pinnedWeek: query.params.week !== undefined });
     return json(200, slate, cacheHeaders(ttl));
   } catch (err) {
     log('failed to build slate', err);
     return json(503, { error: 'Scores are temporarily unavailable. Retrying shortly.' }, cacheHeaders(TTL.error));
+  }
+}
+
+const NO_STORE = { 'Cache-Control': 'no-store' };
+
+/** Wrong-passphrase attempts tolerated per client per minute before the endpoint stops answering. */
+export const ODDS_FAILURE_LIMIT = 8;
+export const ODDS_FAILURE_WINDOW_MS = 60_000;
+const oddsFailures = new Map<string, { count: number; resetAt: number }>();
+
+const clientKey = (req: Request) =>
+  req.headers.get('x-nf-client-connection-ip') ?? req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ?? 'unknown';
+
+function isThrottled(key: string, nowMs: number): boolean {
+  const entry = oddsFailures.get(key);
+  return entry !== undefined && entry.resetAt > nowMs && entry.count >= ODDS_FAILURE_LIMIT;
+}
+
+function recordFailure(key: string, nowMs: number): void {
+  const entry = oddsFailures.get(key);
+  if (!entry || entry.resetAt <= nowMs) oddsFailures.set(key, { count: 1, resetAt: nowMs + ODDS_FAILURE_WINDOW_MS });
+  else entry.count += 1;
+}
+
+/** Odds are read from their own endpoint so a long-cached slate can't pin a stale price (AC16.1). */
+export const ODDS_READ_TTL = 15;
+
+function oddsWeekFromQuery(search: URLSearchParams): { season: number; seasonType: number; week: number } | Error {
+  const season = intParam(search, 'season', 2000, 2100);
+  const seasonType = intParam(search, 'seasontype', 1, 3);
+  const week = intParam(search, 'week', 1, 25);
+  for (const v of [season, seasonType, week]) if (v instanceof Error) return v;
+  if (season === undefined || seasonType === undefined || week === undefined) {
+    return new Error('season, seasontype and week are required');
+  }
+  return { season: season as number, seasonType: seasonType as number, week: week as number };
+}
+
+export interface OddsHandlerDeps extends HandlerDeps {
+  /** Undefined disables writes entirely (AC16.2). */
+  passphrase?: string | undefined;
+}
+
+/** POST /api/odds (SPEC §5c): set this week's price. Never cached. */
+export async function handleOddsRequest(req: Request, deps: OddsHandlerDeps): Promise<Response> {
+  const now = deps.now ?? (() => new Date());
+  const log = deps.log ?? ((message, err) => console.error(`[odds] ${message}`, err ?? ''));
+
+  if (req.method === 'GET' || req.method === 'HEAD') {
+    const ref = oddsWeekFromQuery(new URL(req.url).searchParams);
+    if (ref instanceof Error) return json(400, { error: ref.message }, NO_STORE);
+    try {
+      return json(
+        200,
+        { odds: await readOdds(deps.cache, ref), editable: Boolean(deps.passphrase) },
+        {
+          'Cache-Control': 'public, max-age=0, must-revalidate',
+          'Netlify-CDN-Cache-Control': `public, durable, s-maxage=${ODDS_READ_TTL}, stale-while-revalidate=${ODDS_READ_TTL}`,
+          'Netlify-Vary': 'query=season|seasontype|week',
+        },
+      );
+    } catch (err) {
+      log('failed to read odds', err);
+      return json(503, { error: 'Could not read the odds.' }, NO_STORE);
+    }
+  }
+  if (req.method !== 'POST') return json(405, { error: 'Method not allowed' }, { Allow: 'GET, POST' });
+
+  const nowMs = now().getTime();
+  const client = clientKey(req);
+  if (isThrottled(client, nowMs)) {
+    log(`odds write throttled for ${client}`);
+    return json(429, { error: 'Too many attempts. Wait a minute and try again.' }, NO_STORE);
+  }
+
+  let body: unknown;
+  try {
+    body = await req.json();
+  } catch {
+    return json(400, { error: 'Expected a JSON body' }, NO_STORE);
+  }
+
+  const parsed = parseOddsRequest(body, deps.passphrase, now());
+  if (!parsed.ok) {
+    if (parsed.status === 401) recordFailure(client, nowMs);
+    return json(parsed.status, { error: parsed.error }, NO_STORE);
+  }
+
+  try {
+    await writeOdds(deps.cache, parsed.ref, parsed.odds);
+    return json(200, { odds: parsed.odds }, NO_STORE);
+  } catch (err) {
+    log('failed to store odds', err);
+    return json(503, { error: 'Could not save the odds. Try again.' }, NO_STORE);
   }
 }
 

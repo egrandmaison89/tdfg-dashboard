@@ -4,7 +4,7 @@ A live dashboard for our weekly NFL parlay: **every team kicking off Sunday at 1
 touchdown and one field goal.** It shows which of the legs are already off the board, which are still needed,
 which games are in trouble, and whether the bet is alive.
 
-- **Live mode:** `/` shows the current week's Sunday 1 PM slate. It refreshes about every 20 s while games are on.
+- **Live mode:** `/` shows the current week's Sunday 1 PM slate. It refreshes about every 20 s while games are on, with a drive strip per live game, a pinned "needs attention" strip, and the week's payout.
 - **Other weeks:** use the ‹ › week arrows, or `/?week=3&seasontype=2&year=2026`.
 - **Demo:** `/?demo=1` replays the real Week 1 (Sep 13, 2026) slate with a game-clock slider.
 
@@ -37,7 +37,9 @@ npm run verify       # lint + typecheck + tests + build + e2e
 
 1. In Netlify: **Add new site → Import an existing project → GitHub →** pick `tdfg-dashboard`.
 2. Build settings come from `netlify.toml` (`npm run build`, publish `dist`, functions in `netlify/functions`).
-3. Deploy. No environment variables are needed. Netlify Blobs is enabled automatically.
+3. Deploy. Netlify Blobs is enabled automatically.
+4. **Odds editing (optional):** set `TDFG_ODDS_KEY` to a passphrase (`netlify env:set TDFG_ODDS_KEY "…"`). Without it, `/api/odds` is read-only and the editor stays hidden.
+5. **Powered by Netlify badge:** turn it off under **Project configuration → General → Powered by Netlify badge**. There is no API or CLI for this setting.
 
 ## Project layout
 

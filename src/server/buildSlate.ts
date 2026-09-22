@@ -5,6 +5,7 @@ import { parseScoringPlays, playsMatchScore, tallyLegs, type LegCounts } from '.
 import { isSundayOnePmET, slateDateOf } from '../shared/slate';
 import type { Game, SlateResponse, TeamLine } from '../shared/types';
 import type { KeyValueCache } from './cache';
+import { readOdds } from './odds';
 import type { DataSource, SlateParams } from './source';
 
 export interface BuildDeps {
@@ -12,6 +13,8 @@ export interface BuildDeps {
   cache: KeyValueCache;
   now: () => Date;
   log?: (message: string, err?: unknown) => void;
+  /** True when a passphrase is configured, so the UI can offer the odds editor (F16). */
+  oddsEditable?: boolean;
 }
 
 export interface LegCacheEntry {
@@ -135,6 +138,11 @@ export async function buildSlate(params: SlateParams, deps: BuildDeps): Promise<
     week: board.week,
     slateDate: slateDateOf(events.map((e) => e.kickoff)),
     games,
+    odds:
+      source.name === 'espn' && games.length > 0
+        ? await readOdds(cache, { season: board.season, seasonType: board.seasonType, week: board.week })
+        : null,
+    oddsEditable: deps.oddsEditable === true,
   };
 
   if (source.name === 'espn') {
