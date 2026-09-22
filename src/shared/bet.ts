@@ -118,7 +118,7 @@ export function matchesFilter(game: Game, key: FilterKey): boolean {
       return game.state !== 'void' && !isSettled(game) && !isOffTheBoard(game);
     case 'trouble': {
       const risk = gameRisk(game);
-      return risk === 'watch' || risk === 'danger';
+      return risk === 'watch' || risk === 'danger' || risk === 'last_chance';
     }
     case 'offboard':
       return isOffTheBoard(game);
@@ -129,13 +129,14 @@ export function matchesFilter(game: Game, key: FilterKey): boolean {
 
 /** Urgency order for game cards: live danger first, finished/void games last. */
 const URGENCY_RANK: Record<RiskLevel, number> = {
-  danger: 0,
-  watch: 1,
-  ok: 2,
-  pregame: 3,
-  busted: 4,
-  done: 5,
-  void: 6,
+  last_chance: 0,
+  danger: 1,
+  watch: 2,
+  ok: 3,
+  pregame: 4,
+  busted: 5,
+  done: 6,
+  void: 7,
 };
 
 export function sortGames(games: Game[], mode: SortMode): Game[] {

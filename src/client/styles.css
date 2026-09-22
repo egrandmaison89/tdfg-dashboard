@@ -959,13 +959,23 @@ h1 {
   background: var(--faint);
 }
 
-.needed-item.risk-danger {
+.needed-item.risk-danger,
+.needed-item.risk-last_chance {
   border-color: rgba(255, 99, 99, 0.45);
   background: var(--red-bg);
 }
 
-.needed-item.risk-danger .risk-dot {
+.needed-item.risk-danger .risk-dot,
+.needed-item.risk-last_chance .risk-dot {
   background: var(--red);
+}
+
+.needed-item.risk-last_chance {
+  box-shadow: 0 0 0 1px rgba(255, 99, 99, 0.35);
+}
+
+.needed-item.is-opportunity {
+  box-shadow: inset 3px 0 0 var(--green);
 }
 
 .needed-item.risk-watch {
@@ -1417,4 +1427,331 @@ h1 {
   .progress-fill {
     transition: none;
   }
+}
+
+/* ---------- v1.2: attention, drive strip, odds ---------- */
+.stack {
+  display: grid;
+  gap: 12px;
+  align-content: start;
+}
+
+.attention {
+  border-color: rgba(255, 99, 99, 0.45);
+  box-shadow: 0 0 0 1px rgba(255, 99, 99, 0.18);
+  margin-bottom: 14px;
+}
+
+.attention h2 {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.attention-count {
+  min-width: 22px;
+  padding: 1px 7px;
+  border-radius: 999px;
+  background: var(--red);
+  color: #2a0808;
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-align: center;
+}
+
+.attention-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
+
+@media (min-width: 640px) {
+  .attention-list {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+}
+
+.attention-item {
+  display: grid;
+  gap: 2px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: var(--surface-2);
+  border-left: 3px solid var(--border);
+}
+
+.attention-item.risk-danger {
+  border-left-color: var(--red);
+}
+
+.attention-item.risk-last_chance {
+  border-left-color: var(--red);
+  background: var(--red-bg);
+}
+
+/* An opportunity is an accent, never a replacement for the risk colour (AC14.3). */
+.attention-item.is-opportunity {
+  box-shadow: inset 3px 0 0 var(--green);
+}
+
+.attention-item.risk-watch.is-opportunity,
+.attention-item.risk-ok.is-opportunity {
+  background: var(--green-bg);
+  border-left-color: var(--green);
+}
+
+.attention {
+  position: sticky;
+  top: 8px;
+  z-index: 3;
+  max-height: 60vh;
+  overflow-y: auto;
+  background: var(--surface);
+}
+
+.attention-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.attention-head .badge {
+  margin-left: auto;
+}
+
+.badge-chance {
+  background: var(--green-bg);
+  color: var(--green);
+}
+
+.badge-last_chance {
+  background: var(--red-bg);
+  color: var(--red);
+}
+
+.attention-why,
+.needed-why,
+.card-foot .why {
+  color: var(--muted);
+  font-size: 0.76rem;
+}
+
+.needed-why {
+  grid-column: 1 / -1;
+}
+
+/* ---------- Drive strip ---------- */
+.drive {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--border);
+  display: grid;
+  gap: 5px;
+}
+
+.drive-field {
+  display: grid;
+  grid-template-columns: 26px 1fr 26px;
+  align-items: stretch;
+  gap: 2px;
+  height: 22px;
+}
+
+.endzone {
+  display: grid;
+  place-items: center;
+  border-radius: 4px;
+  background: var(--surface-2);
+  color: var(--muted);
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+.endzone-target {
+  background: rgba(47, 212, 122, 0.16);
+  color: var(--green);
+}
+
+.field-body {
+  position: relative;
+  border-radius: 4px;
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.04)), var(--bg);
+  overflow: hidden;
+}
+
+.zone {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+
+.zone-fg {
+  background: rgba(90, 167, 255, 0.16);
+}
+
+.zone-rz {
+  background: rgba(255, 99, 99, 0.2);
+}
+
+.yard-mark {
+  position: absolute;
+  top: 3px;
+  bottom: 3px;
+  width: 1px;
+  background: var(--border);
+}
+
+/* Distinct from .ball (the possession marker in a team row) — same emoji, different job. */
+.drive-ball {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 0.72rem;
+  line-height: 1;
+  filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.8));
+  transition: left 0.6s ease;
+}
+
+.drive-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: 0.76rem;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.drive-chip {
+  padding: 1px 6px;
+  border-radius: 6px;
+  font-size: 0.66rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.chip-rz {
+  background: var(--red-bg);
+  color: var(--red);
+}
+
+.chip-fg {
+  background: rgba(90, 167, 255, 0.16);
+  color: var(--blue);
+}
+
+.chip-long {
+  background: var(--amber-bg);
+  color: var(--amber);
+}
+
+.odds-warn {
+  color: var(--amber);
+  font-size: 0.78rem;
+}
+
+.drive-want {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--text);
+}
+
+.drive.want-need .drive-want {
+  color: var(--amber);
+  font-weight: 600;
+}
+
+.drive.want-neutral .drive-want {
+  color: var(--muted);
+}
+
+.card.risk-last_chance {
+  border-left-color: var(--red);
+  box-shadow: 0 0 0 1px rgba(255, 99, 99, 0.35);
+}
+
+/* ---------- Odds ---------- */
+.odds-headline {
+  display: grid;
+  gap: 2px;
+}
+
+.odds-price {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.odds-payout {
+  font-size: 1rem;
+  color: var(--muted);
+}
+
+.odds-payout strong {
+  color: var(--green);
+  font-size: 1.15rem;
+}
+
+.odds-note,
+.odds-estimate {
+  color: var(--muted);
+  font-size: 0.78rem;
+  margin: 0;
+}
+
+.odds-estimate {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--border);
+}
+
+.odds-estimate strong {
+  color: var(--text);
+}
+
+.odds-form {
+  margin-top: 10px;
+  display: grid;
+  gap: 8px;
+}
+
+.odds-fields {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+}
+
+.odds-fields label {
+  display: grid;
+  gap: 3px;
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
+.odds-fields input {
+  font: inherit;
+  font-size: 0.9rem;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 7px 9px;
+  min-width: 0;
+}
+
+.odds-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.odds-error {
+  margin: 0;
+  color: var(--red);
+  font-size: 0.8rem;
 }

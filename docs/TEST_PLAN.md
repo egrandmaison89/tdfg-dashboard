@@ -5,7 +5,7 @@ All suites run with `npm test` (unit + integration) and `npm run e2e` (Playwrigh
 
 ## 1. Test data
 - `fixtures/2026-wk1/`: **real** ESPN scoreboard and trimmed summaries for Sunday 2026-09-13 (13 Sunday games, 8 in the 1 PM window). It includes a pick-six (TB, PIT), a defensive fumble-recovery TD, and OT scoring (NO @ DET).
-- `fixtures/live-mnf/`: real in-progress snapshots of DEN @ KC (MNF, 2026-09-14). Used to validate live-state parsing (clock, period, possession, halftime).
+- `fixtures/live-mnf/`: real in-progress snapshots of DEN @ KC (MNF, 2026-09-14), 9 captures. Used to validate live-state parsing: clock, period, possession, red zone, **down, distance, yard line and timeouts**, and yards-to-goal in both directions.
 - Synthetic builders in `tests/helpers.ts` cover conditions real data didn't show: void games, feed lag, overturned plays, and DST dates.
 
 ## 2. Unit tests (Vitest)
@@ -85,6 +85,25 @@ All suites run with `npm test` (unit + integration) and `npm run e2e` (Playwrigh
 | › mobile | No horizontal page scroll at 375 px; the grid scrolls within its own container. |
 | `dashboard.spec.ts` › season picker | Season select and week chips navigate with the right URLs; chip statuses match the history data; still works if `/api/history` fails; "Current week" link. |
 | › no bet | A slate with a void game shows the "No bet" pill while the counter still tracks. |
+
+## 5c. v1.2 — attention, drive strip, odds
+
+### Unit
+| Suite | Covers | Key cases |
+|-------|--------|-----------|
+| `assessment.test.ts` + `attention.test.ts` | F14 | Yards-to-goal from ESPN's home-goal yard line, both directions; per-side timeouts. No ball inside 8:00 with a FG missing escalates; no timeouts escalates again; a missing TD never escalates for lack of the ball (the defense can score); **unknown possession is not treated as "the other team has it"**; overtime and the final two minutes are a last chance; opportunity flags (FG range, red zone) and that they never lower the level; terminal states; `attentionItems` (the function the strip actually uses) includes danger, last chance and opportunities only, worst level first. Reasons are never empty, always lead with the clock, and word the range by what's needed. |
+| `drive.test.ts` | F15 | Null unless live; field position and progress; every "what we want" branch (needs both, TD only, TD on 4th in range, TD in red zone, FG in range, FG too far, possessing team done, everyone done); no-possession and halftime; screen-reader summary. |
+| `odds.test.ts` | F16 | Profit/return for plus and minus prices; formatting; implied probability; probability → American; validation of the shapes people type (`+2500`, `$20`), rejections, note truncation. |
+| `oddsEstimate.test.ts` | AC16.4 | Leg rates derived from every graded week (FG misses dominate); calibrated model mean equals the observed win rate; slate estimate in a believable range and monotonic in slate size; void games excluded; empty inputs. |
+| `serverOdds.test.ts` | §5c | parseOddsRequest: valid body, no passphrase (503), wrong passphrase (401), bad week/odds/stake (400). Handler: stores and echoes, `no-store`, 405, unreadable body, storage failure (503). Slate carries stored odds and the `oddsEditable` flag; demo never has odds. |
+
+### End-to-end (`gameday.spec.ts`, mocked API)
+| Spec | Expectations |
+|------|--------------|
+| drive strip | Down & distance, want line, ball at 70% for a ball 30 yards out, accessible field label; no ball marker without possession (halftime); absent for non-live games. |
+| needs attention | Pins a live scoring chance with "Chance now" and its reason; escalates a team needing a kick with no ball and no timeouts to `last_chance` and shows why on the card; absent when nothing is urgent. |
+| payout | Entered price, payout, stake and note; estimate line; no editor without a passphrase; editor posts the right body and closes; a rejected passphrase keeps the form open with the error. |
+| phone | Drive and attention strips fit at 375 px with no sideways scroll. |
 
 ## 6. Exit criteria for "ready to review"
 - `npm run verify` green.

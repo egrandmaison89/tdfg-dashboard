@@ -1,5 +1,6 @@
 import { isOffTheBoard, isSettled } from '../../shared/bet';
-import { gameRisk } from '../../shared/risk';
+import { assessTeam, gameRisk, RISK_SEVERITY } from '../../shared/risk';
+import { DriveStrip } from './DriveStrip';
 import type { Game, LegType, RiskLevel, TeamLine } from '../../shared/types';
 import { gameStatusText, LEG_NAME, RISK_LABEL } from '../format';
 
@@ -58,7 +59,7 @@ function LegCell({ game, team, type }: { game: Game; team: TeamLine; type: LegTy
   return <LegIcon state={state} count={count} label={label} />;
 }
 
-const BADGE_RISKS: RiskLevel[] = ['watch', 'danger', 'busted', 'void'];
+const BADGE_RISKS: RiskLevel[] = ['watch', 'danger', 'last_chance', 'busted', 'void'];
 
 export function GameCard({ game }: { game: Game }) {
   const risk = gameRisk(game);
@@ -67,6 +68,11 @@ export function GameCard({ game }: { game: Game }) {
   const live = game.state === 'in';
   const possessor = live ? game.teams.find((t) => t.id === game.possessionTeamId) : undefined;
   const showBadge = offBoard || BADGE_RISKS.includes(risk);
+  // Why this game is flagged, from whichever side is in the most trouble (AC14.4).
+  const worst = game.teams
+    .map((team) => assessTeam(game, team))
+    .sort((a, b) => RISK_SEVERITY[b.level] - RISK_SEVERITY[a.level])[0];
+  const why = worst && (worst.level === 'danger' || worst.level === 'last_chance') ? worst.reasons : [];
 
   return (
     <article
@@ -113,12 +119,13 @@ export function GameCard({ game }: { game: Game }) {
         </div>
       ))}
 
-      {(possessor || !game.legsVerified) && (
+      <DriveStrip game={game} />
+
+      {(why.length > 0 || !game.legsVerified) && (
         <footer className="card-foot">
-          {possessor && (
-            <span>
-              {game.isRedZone && <strong className="rz">Red zone · </strong>}
-              {game.downDistance ?? `${possessor.abbr} ball`}
+          {why.length > 0 && (
+            <span className="why" data-testid="risk-why">
+              {why.join(' · ')}
             </span>
           )}
           {!game.legsVerified && (

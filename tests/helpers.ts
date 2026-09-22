@@ -70,6 +70,11 @@ export function game(overrides: GameOverrides = {}): Game {
     possessionTeamId: null,
     isRedZone: false,
     downDistance: null,
+    down: null,
+    distance: null,
+    yardLine: null,
+    homeTimeouts: null,
+    awayTimeouts: null,
     legsVerified: true,
     ...rest,
     teams: [
@@ -91,6 +96,8 @@ export function slate(games: Game[], overrides: Partial<SlateResponse> = {}): Sl
     week: 1,
     slateDate: '2026-09-13',
     games,
+    odds: null,
+    oddsEditable: false,
     ...overrides,
   };
 }

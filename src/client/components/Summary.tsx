@@ -1,4 +1,5 @@
 import type { BetStatus, BetSummary } from '../../shared/bet';
+import { assessTeam } from '../../shared/risk';
 import { agoLabel, gameStatusText } from '../format';
 import { useNow } from '../hooks';
 import { TeamLogo } from './GameCard';
@@ -39,7 +40,11 @@ export function BetSummaryPanel({ summary }: { summary: BetSummary }) {
         <div className="progress-fill" style={{ width: `${pct}%` }} />
       </div>
       <p className="remainder">
-        {summary.status === 'WON' ? 'Every team has a TD and a field goal. Cash it.' : summary.remainderText}
+        {summary.status === 'WON'
+          ? 'Every team has a TD and a field goal. Cash it.'
+          : summary.status === 'BUSTED' && summary.needed.length === 0
+            ? `${summary.bustedLegs.length} ${summary.bustedLegs.length === 1 ? 'leg' : 'legs'} short this week.`
+            : summary.remainderText}
       </p>
       {summary.bustedLegs.length > 0 && (
         <p className="busted-line" data-testid="busted-legs">
@@ -76,13 +81,15 @@ export function NeededList({ summary }: { summary: BetSummary }) {
       </div>
       <ul className="needed-list">
         {summary.needed.map((entry) => {
-          const hasBall = entry.game.state === 'in' && entry.game.possessionTeamId === entry.team.id;
+          const assessment = assessTeam(entry.game, entry.team);
+          const hasBall = assessment.hasBall;
           return (
             <li
               key={`${entry.game.id}-${entry.team.id}`}
-              className={`needed-item risk-${entry.risk}`}
+              className={`needed-item risk-${entry.risk}${assessment.opportunity ? ' is-opportunity' : ''}`}
               data-testid="needed-item"
               data-risk={entry.risk}
+              data-opportunity={assessment.opportunity ? 'true' : 'false'}
             >
               <span className="risk-dot" aria-hidden="true" />
               <TeamLogo team={entry.team} size={22} />
@@ -96,8 +103,13 @@ export function NeededList({ summary }: { summary: BetSummary }) {
               </span>
               <span className="ctx">
                 {gameStatusText(entry.game)}
-                {hasBall && (entry.game.isRedZone ? ' · 🏈 red zone' : ' · 🏈 ball')}
+                {hasBall && (assessment.inRedZone ? ' · 🏈 red zone' : assessment.inFgRange ? ' · 🏈 FG range' : ' · 🏈 ball')}
               </span>
+              {assessment.reasons.length > 0 && (
+                <span className="needed-why" data-testid="needed-why">
+                  {assessment.reasons.join(' · ')}
+                </span>
+              )}
             </li>
           );
         })}
