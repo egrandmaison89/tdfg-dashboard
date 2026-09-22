@@ -107,16 +107,28 @@ test.describe('History page (F13)', () => {
     await page.goto('/history');
     await expect(page.getByTestId('wins-bar')).toHaveCount(6);
     await expect(page.getByTestId('legs-point')).toHaveCount(6);
+    const winsTooltip = page.getByTestId('wins-chart').getByTestId('chart-tooltip');
     await page.getByTestId('wins-bar').nth(1).hover(); // 2022 (ascending)
-    await expect(page.getByTestId('chart-tooltip')).toContainText('2 wins');
-    await expect(page.getByTestId('chart-tooltip')).toContainText('2022');
+    await expect(winsTooltip).toContainText('2 wins');
+    await expect(winsTooltip).toContainText('2022');
+    await page.mouse.move(0, 0);
+    await expect(winsTooltip).toHaveCount(0);
+
+    const legsTooltip = page.getByTestId('legs-chart').getByTestId('chart-tooltip');
     await page.getByTestId('legs-point').nth(3).focus(); // 2024, keyboard reachable
-    await expect(page.getByTestId('chart-tooltip')).toContainText('legs hit');
+    await expect(legsTooltip).toContainText('legs hit');
+    await expect(legsTooltip).toContainText('2024');
   });
 
   test('shows a crunching banner while incomplete and clears it when grading finishes', async ({ page }) => {
-    let calls = 0;
-    await mockApis(page, { history: () => ({ status: 200, body: mockHistory({ incomplete: calls++ === 0 }) }) });
+    // Time-based rather than call-count-based: dev StrictMode mounts twice, so the first two fetches are immediate.
+    let firstCallAt: number | null = null;
+    await mockApis(page, {
+      history: () => {
+        firstCallAt ??= Date.now();
+        return { status: 200, body: mockHistory({ incomplete: Date.now() - firstCallAt < 2_000 }) };
+      },
+    });
     await page.goto('/history');
     await expect(page.getByTestId('history-incomplete')).toBeVisible();
     await expect(page.getByTestId('history-incomplete')).toBeHidden({ timeout: 10_000 });
