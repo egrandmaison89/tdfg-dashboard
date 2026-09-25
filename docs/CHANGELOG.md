@@ -148,7 +148,8 @@ All five gates were green when the reviewer started, so every finding below is s
 ### Release
 - Re-verified after the QA fixes: lint ✓, typecheck ✓, 178/178 unit and integration tests ✓, build ✓, 14/14 Playwright e2e ✓.
 - Pushed to https://github.com/egrandmaison89/tdfg-dashboard (public).
-- Deployed to Netlify production (CLI deploy, team `egrandmaison89`): https://tdfg-dashboard.netlify.app
+- Deployed to Netlify production (CLI deploy, team `egrandmaison89`): https://tittyfg.netlify.app
+  (production URL updated from `tdfg-dashboard.netlify.app`; Netlify site slug is `tittyfg`)
 - Production smoke test:
   - `?week=01` → 400 (confirms the post-QA function is live).
   - `/api/slate` → 8 games, 32/32 legs, served as `cache-status: "Netlify Durable"; hit`.
